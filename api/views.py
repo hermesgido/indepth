@@ -135,8 +135,90 @@ class MachineSlotsAPIView(APIView):
        
     
 
+# class VendingMashineCallBackAPI(APIView):
+#     def get(self, request):
+#         print(request.data)
+#         print("Getting.....")
+
+
+#         return Response({"status": "success", "message": "Machine status updated successfully"})
+#     def post(self, request):
+#         print(request.data)
+#         print("Postingg")
+
+#         return Response({"status": "success", "message": "Machine status updated successfully"})
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 class VendingMashineCallBackAPI(APIView):
     def get(self, request):
+        print(request.data)
+        print("Getting.....")
         return Response({"status": "success", "message": "Machine status updated successfully"})
+
     def post(self, request):
-        return Response({"status": "success", "message": "Machine status updated successfully"})
+        content_type = request.content_type
+        print(request)
+        
+        # Parse data based on content type
+        if content_type == 'application/json':
+            data = request.data
+        elif content_type == 'application/x-www-form-urlencoded':
+            data = request.POST.dict()
+        else:
+            return Response({"status": "Unsupported content type"}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+
+        print("Received Data:", data)
+        
+        funcode = data.get('FunCode')
+        if funcode == '1000':
+            print("Received Funcode 1000 Data:", data)
+            response_data = {
+                "Status": "0",
+                "SlotNo": data.get("SlotNo", "Unknown"),
+                "TradeNo": "20170802193446876",
+                "ImageUrl": "http://xxx.com/201708029502889.png",
+                "ImageDetailUrl": "http://xxx.com/20170801124323318.png",
+                "Err": "success"
+            }
+            return Response(response_data)
+
+        elif funcode == '2000':
+            print("Received Funcode 2000 Data:", data)
+            trade_no = data.get('TradeNo', "Unknown")
+            session_code = data.get('SessionCode')
+            if session_code == '123456789':
+                response_data = {
+                    "Status": "0",
+                    "SlotNo": "23",
+                    "ProductID": "1002356",
+                    "TradeNo": trade_no,
+                    "Err": "成功"
+                }
+                return Response(response_data)
+            else:
+                print("SessionCode does not match")
+                return Response({"status": "failure", "message": "Invalid session code"}, status=status.HTTP_400_BAD_REQUEST)
+
+        elif funcode == '4000':
+            print("Received Funcode 4000 Data:", data)
+            dt = { "Status": "0","MsgType":"0","TradeNo":"123456","SlotNo":"13","ProductID":"1005678692","Err":"NO Error"}
+            return Response(dt)
+
+        elif funcode == '5000':
+            print("Received Funcode 5000 Data:", data)
+            slot_no = data.get('SlotNo', "Unknown")  # Get SlotNo from request
+            trade_no = data.get('TradeNo', "20170609123523569")  # Get TradeNo from request
+            response_data = {
+                "Status": "0",
+                "SlotNo": slot_no,
+                "TradeNo": trade_no,
+                "Err": "success"
+            }
+            return Response(response_data)
+
+        else:
+            print("Unknown Funcode")
+            return Response({"status": "failure", "message": "Unknown FunCode"}, status=status.HTTP_400_BAD_REQUEST)
