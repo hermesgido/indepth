@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-ndf408ar9r-(co_b&oc=#(tq0!6jzw98ig)6u#1w(d)(1-1den
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -24,12 +24,12 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework.authentication.BasicAuthentication',
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
 }
 
 LOGIN_URL = 'login'
@@ -75,6 +75,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'indepth',  
+        'USER': 'indepth',      
+        'PASSWORD': 'indepth',   
+        'HOST': 'localhost',           
+        'PORT': '5432',               
+    }
+}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

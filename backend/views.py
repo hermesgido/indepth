@@ -50,7 +50,7 @@ def products(request):
 def kvp_customers(request):
 
     return render(request, 'kvp_customers.html')
-
+    
 def staff(request):
 
     return render(request, 'staff.html')
