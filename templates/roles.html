@@ -1,0 +1,462 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Roles</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <a
+                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        <i class="iconoir-filter-alt me-1"></i> Filter
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-start">
+                        <div class="p-2">
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-all"
+                            />
+                            <label class="form-check-label" for="filter-all">
+                              All
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-one"
+                            />
+                            <label class="form-check-label" for="filter-one">
+                              New
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-two"
+                            />
+                            <label class="form-check-label" for="filter-two">
+                              VIP
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-six"
+                            />
+                            <label class="form-check-label" for="filter-six">
+                              Loyal
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-auto">
+                      <button
+                      data-bs-toggle="modal" data-bs-target="#addRoleModal"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa-solid fa-plus me-1"></i> Add Role
+                      </button>
+                    </div>
+                    <!--end col-->
+                  </form>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check-all-roles"
+                            id="check-all-roles"
+                          />
+                        </div>
+                      </th>
+                      <th>Role ID</th>
+                      <th>Role Name</th>
+                      <th>Description</th>
+                      <th>Assigned Staff</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check1"
+                          />
+                        </div>
+                      </td>
+                      <td>R001</td>
+                      <td>Administrator</td>
+                      <td>
+                        Has full access to all system functionalities and
+                        settings.
+                      </td>
+                      <td>10</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check2"
+                          />
+                        </div>
+                      </td>
+                      <td>R002</td>
+                      <td>Manager</td>
+                      <td>
+                        Can manage staff, view reports, and access restricted
+                        areas.
+                      </td>
+                      <td>15</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check3"
+                          />
+                        </div>
+                      </td>
+                      <td>R003</td>
+                      <td>HR Specialist</td>
+                      <td>
+                        Handles employee records, payroll, and recruitment
+                        processes.
+                      </td>
+                      <td>5</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check4"
+                          />
+                        </div>
+                      </td>
+                      <td>R004</td>
+                      <td>IT Support</td>
+                      <td>
+                        Provides technical support and manages IT
+                        infrastructure.
+                      </td>
+                      <td>8</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check5"
+                          />
+                        </div>
+                      </td>
+                      <td>R005</td>
+                      <td>Financial Analyst</td>
+                      <td>
+                        Analyzes financial data and prepares reports for
+                        management.
+                      </td>
+                      <td>3</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check6"
+                          />
+                        </div>
+                      </td>
+                      <td>R006</td>
+                      <td>Marketing Specialist</td>
+                      <td>Develops marketing strategies and campaigns.</td>
+                      <td>7</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check7"
+                          />
+                        </div>
+                      </td>
+                      <td>R007</td>
+                      <td>Sales Representative</td>
+                      <td>
+                        Manages customer relationships and sales activities.
+                      </td>
+                      <td>12</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check8"
+                          />
+                        </div>
+                      </td>
+                      <td>R008</td>
+                      <td>Product Manager</td>
+                      <td>
+                        Oversees product development and manages product
+                        lifecycle.
+                      </td>
+                      <td>6</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check9"
+                          />
+                        </div>
+                      </td>
+                      <td>R009</td>
+                      <td>UI/UX Designer</td>
+                      <td>
+                        Designs user interfaces and ensures a good user
+                        experience.
+                      </td>
+                      <td>4</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="role-check10"
+                          />
+                        </div>
+                      </td>
+                      <td>R010</td>
+                      <td>Content Writer</td>
+                      <td>
+                        Creates and manages content for marketing and
+                        communications.
+                      </td>
+                      <td>5</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+
+    <!--end footer-->
+  </div>
+  <!-- end page content -->
+</div>
+
+
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for role in roles %}
+        <tr>
+            <td>{{ role.name }}</td>
+            <td>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editRoleModal{{ role.id }}">Edit</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRoleModal{{ role.id }}">Delete</button>
+                <a href="{% url 'assign_permissions' role.id %}" class="btn btn-info">Assign Permissions</a>
+            </td>
+        </tr>
+
+        <!-- Edit Role Modal -->
+        <div class="modal fade" id="editRoleModal{{ role.id }}" tabindex="-1" aria-labelledby="editRoleModalLabel{{ role.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editRoleModalLabel{{ role.id }}">Edit Role</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST" action="{% url 'edit_role' role.id %}">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="roleName{{ role.id }}" class="form-label">Role Name</label>
+                                <input type="text" class="form-control" id="roleName{{ role.id }}" name="name" value="{{ role.name }}" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Role Modal -->
+        <div class="modal fade" id="deleteRoleModal{{ role.id }}" tabindex="-1" aria-labelledby="deleteRoleModalLabel{{ role.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteRoleModalLabel{{ role.id }}">Delete Role</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete the role "{{ role.name }}"?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'delete_role' role.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </tbody>
+</table> 
+
+<!-- Add Role Modal -->
+<div class="modal fade" id="addRoleModal" tabindex="-1" aria-labelledby="addRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addRoleModalLabel">Add Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{% url 'add_role' %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="roleName" class="form-label">Role Name</label>
+                        <input type="text" class="form-control" id="roleName" name="name" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Role</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

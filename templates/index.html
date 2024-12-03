@@ -1,0 +1,885 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div
+                class="row d-flex justify-content-center border-dashed-bottom pb-3"
+              >
+                <div class="col-9">
+                  <p class="text-dark mb-0 fw-semibold fs-14">Customers</p>
+                  <h3 class="mt-2 mb-0 fw-bold">24,000</h3>
+                </div>
+                <!--end col-->
+                <div class="col-3 align-self-center">
+                  <div
+                    class="d-flex justify-content-center align-items-center thumb-xl bg-light rounded-circle mx-auto"
+                  >
+                    <i
+                      class="iconoir-hexagon-dice h1 align-self-center mb-0 text-secondary"
+                    ></i>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+              <p class="mb-0 text-truncate text-muted mt-3">
+                <span class="text-success">840 (10%)</span> New Today
+              </p>
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div
+                class="row d-flex justify-content-center border-dashed-bottom pb-3"
+              >
+                <div class="col-9">
+                  <p class="text-dark mb-0 fw-semibold fs-14">
+                    Total Transactions
+                  </p>
+                  <h3 class="mt-2 mb-0 fw-bold">123,990</h3>
+                </div>
+                <!--end col-->
+                <div class="col-3 align-self-center">
+                  <div
+                    class="d-flex justify-content-center align-items-center thumb-xl bg-light rounded-circle mx-auto"
+                  >
+                    <i
+                      class="iconoir-clock h1 align-self-center mb-0 text-secondary"
+                    ></i>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+              <p class="mb-0 text-truncate text-muted mt-3">
+                <span class="text-success">150 (10%)</span> New Today
+              </p>
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div
+                class="row d-flex justify-content-center border-dashed-bottom pb-3"
+              >
+                <div class="col-9">
+                  <p class="text-dark mb-0 fw-semibold fs-14">Mashines</p>
+                  <h3 class="mt-2 mb-0 fw-bold">10</h3>
+                </div>
+                <!--end col-->
+                <div class="col-3 align-self-center">
+                  <div
+                    class="d-flex justify-content-center align-items-center thumb-xl bg-light rounded-circle mx-auto"
+                  >
+                    <i
+                      class="iconoir-percentage-circle h1 align-self-center mb-0 text-secondary"
+                    ></i>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+              <p class="mb-0 text-truncate text-muted mt-3">
+                <span class="text-success">10</span> Active Now
+              </p>
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-8">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Audience Overview</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <div class="dropdown">
+                    <a
+                      href="#"
+                      class="btn bt btn-light dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="icofont-calendar fs-5 me-1"></i>
+                      This Year<i class="las la-angle-down ms-1"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="#">Today</a>
+                      <a class="dropdown-item" href="#">Last Week</a>
+                      <a class="dropdown-item" href="#">Last Month</a>
+                      <a class="dropdown-item" href="#">This Year</a>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div
+              class="highcharts-dark"
+                id="container-transactions"
+                style="width: 100%; height: 400px"
+              ></div>
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div
+                  id="container"
+                  style="width: 400px; height: 400px; margin: 0 auto"
+                ></div>
+
+                {% comment %}
+                <div id="container" style="width: 100%; height: 400px"></div>
+                {% endcomment %}
+              </div>
+              <!--end row-->
+              <button type="button" class="btn btn-primary w-100 btn-lg fs-14">
+                More Detail <i class="fa-solid fa-arrow-right-long"></i>
+              </button>
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card card-h-100">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  {% comment %}
+                  <h4 class="card-title">Browser Used & Traffic Reports</h4>
+                  {% endcomment %}
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div
+                id="container-dispenser"
+                style="width: 100%; height: 400px"
+              ></div>
+
+              <!--end /div-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-lg-6">
+          <div class="card card-h-100">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">
+                    Dispenser-wise Product Distribution
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th class="border-top-0">Dispenser</th>
+                      <th class="border-top-0">Total Products</th>
+                      <th class="border-top-0">Previous Period</th>
+                      <th class="border-top-0">% Change</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 1</a>
+                      </td>
+                      <td>90<small class="text-muted">(60%)</small></td>
+                      <td>85<small class="text-muted">(55%)</small></td>
+                      <td>
+                        5.88%
+                        <i class="fas fa-caret-up text-success font-16"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 2</a>
+                      </td>
+                      <td>75<small class="text-muted">(55%)</small></td>
+                      <td>70<small class="text-muted">(50%)</small></td>
+                      <td>
+                        7.14%
+                        <i class="fas fa-caret-up text-success font-16"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 3</a>
+                      </td>
+                      <td>65<small class="text-muted">(45%)</small></td>
+                      <td>60<small class="text-muted">(40%)</small></td>
+                      <td>
+                        8.33%
+                        <i class="fas fa-caret-up text-success font-16"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 4</a>
+                      </td>
+                      <td>50<small class="text-muted">(35%)</small></td>
+                      <td>55<small class="text-muted">(38%)</small></td>
+                      <td>
+                        -9.09%
+                        <i class="fas fa-caret-down text-danger font-16"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 5</a>
+                      </td>
+                      <td>45<small class="text-muted">(30%)</small></td>
+                      <td>40<small class="text-muted">(25%)</small></td>
+                      <td>
+                        12.5% <i class="fas fa-caret-up text-success"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 3</a>
+                      </td>
+                      <td>65<small class="text-muted">(45%)</small></td>
+                      <td>60<small class="text-muted">(40%)</small></td>
+                      <td>
+                        8.33%
+                        <i class="fas fa-caret-up text-success font-16"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 4</a>
+                      </td>
+                      <td>50<small class="text-muted">(35%)</small></td>
+                      <td>55<small class="text-muted">(38%)</small></td>
+                      <td>
+                        -9.09%
+                        <i class="fas fa-caret-down text-danger font-16"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="text-primary">Dispenser 5</a>
+                      </td>
+                      <td>45<small class="text-muted">(30%)</small></td>
+                      <td>40<small class="text-muted">(25%)</small></td>
+                      <td>
+                        12.5% <i class="fas fa-caret-up text-success"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="m-0 fs-12 fst-italic ps-2 text-muted">
+                Last data updated - 10min ago
+                <a href="#!" class="link-danger ms-1"
+                  ><i class="align-middle iconoir-refresh"></i
+                ></a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!--end col-->
+      </div>
+      <!--end row-->
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            {% comment %}
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Traffic Sources</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <div class="dropdown">
+                    <a
+                      href="#"
+                      class="btn bt btn-light dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="icofont-search-user fs-5 me-1"></i>
+                      Direct<i class="las la-angle-down ms-1"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="#">Email</a>
+                      <a class="dropdown-item" href="#">Referral</a>
+                      <a class="dropdown-item" href="#">Direct</a>
+                      <a class="dropdown-item" href="#">Organic</a>
+                      <a class="dropdown-item" href="#">Campaign</a>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            {% endcomment %}
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class>
+                <div id="container-age"></div>
+
+                {% comment %}
+                <div
+                  id="traffic_sources"
+                  class="apex-charts d-block w-90 mx-auto"
+                ></div>
+                {% endcomment %} {% comment %}
+                <hr class="hr-dashed border-secondary w-25 mt-0 mx-auto" />
+                {% endcomment %}
+              </div>
+              <div class="text-center">
+                <button type="button" class="btn btn-outline-primary px-3 mt-2">
+                  More details
+                </button>
+              </div>
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-6 col-lg-8">
+          <div id="heatmap-container"></div>
+
+          {% comment %} <div id="container-returning"></div> {% endcomment %}
+
+          {% comment %}
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Organic Traffic In World</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <div class="dropdown">
+                    <a
+                      href="#"
+                      class="btn bt btn-light dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="icofont-calendar fs-5 me-1"></i>
+                      Today<i class="las la-angle-down ms-1"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="#">Today</a>
+                      <a class="dropdown-item" href="#">Last Week</a>
+                      <a class="dropdown-item" href="#">Last Month</a>
+                      <a class="dropdown-item" href="#">This Year</a>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div id="map_2" class style="height: 320px"></div>
+                </div>
+                <!--end col-->
+                <div class="col-lg-4 align-self-center">
+                  <div class="d-flex align-items-center my-3">
+                    <img
+                      src="{% static 'assets/images/flags/us_flag.jpg'  %}"
+                      class="thumb-sm align-self-center rounded-circle"
+                      alt="..."
+                    />
+                    <div class="flex-grow-1 ms-2">
+                      <h5 class="mb-1">35,365</h5>
+                      <p class="text-muted mb-0">
+                        USA . Last Month
+                        <span class="text-success"
+                          >2.5% <i class="mdi mdi-arrow-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                    <!--end media-body-->
+                  </div>
+                  <!--end media-->
+                  <div class="d-flex align-items-center my-3">
+                    <img
+                      src="{% static 'assets/images/flags/germany_flag.jpg'  %}"
+                      class="thumb-sm align-self-center rounded-circle"
+                      alt="..."
+                    />
+                    <div class="flex-grow-1 ms-2">
+                      <h5 class="mb-1">24,865</h5>
+                      <p class="text-muted mb-0">
+                        Germany . Last Month
+                        <span class="text-success"
+                          >1.2% <i class="mdi mdi-arrow-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                    <!--end media-body-->
+                  </div>
+                  <!--end media-->
+                  <div class="d-flex align-items-center my-3">
+                    <img
+                      src="{% static 'assets/images/flags/spain_flag.jpg'  %}"
+                      class="thumb-sm align-self-center rounded-circle"
+                      alt="..."
+                    />
+                    <div class="flex-grow-1 ms-2">
+                      <h5 class="mb-1">18,369</h5>
+                      <p class="text-muted mb-0">
+                        Spain . Last Month
+                        <span class="text-success"
+                          >0.8% <i class="mdi mdi-arrow-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                    <!--end media-body-->
+                  </div>
+                  <!--end media-->
+                  <div class="d-flex align-items-center my-3">
+                    <img
+                      src="{% static 'assets/images/flags/baha_flag.jpg'  %}"
+                      class="thumb-sm align-self-center rounded-circle"
+                      alt="..."
+                    />
+                    <div class="flex-grow-1 ms-2">
+                      <h5 class="mb-1">11,325</h5>
+                      <p class="text-muted mb-0">
+                        Bahamas . Last Month
+                        <span class="text-success"
+                          >2.5% <i class="mdi mdi-arrow-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                    <!--end media-body-->
+                  </div>
+                  <!--end media-->
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          {% endcomment %}
+          <!--end card-->
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!-- container -->
+
+    <!--Start Rightbar-->
+    <!--Start Rightbar/offcanvas-->
+
+    <!--end Rightbar/offcanvas-->
+    <!--end Rightbar-->
+    <!--Start Footer-->
+
+    <footer class="footer text-center text-sm-start d-print-none">
+      <div class="container-xxl">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-0 rounded-bottom-0">
+              <div class="card-body">
+                <p class="text-muted mb-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  Rizz
+                  <span class="text-muted d-none d-sm-inline-block float-end">
+                    Crafted with
+                    <i class="iconoir-heart text-danger"></i>
+                    by Mannatthemes</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--end footer-->
+  </div>
+  <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+
+<!-- Javascript  -->
+<!-- vendor js -->
+
+<script>
+  Highcharts.chart("container-dispenser", {
+    chart: {
+      type: "bar",
+    },
+    title: {
+      text: "Dispenser-wise Product Distribution",
+    },
+    xAxis: {
+      categories: [
+        "Dispenser 1",
+        "Dispenser 2",
+        "Dispenser 3",
+        "Dispenser 4",
+        "Dispenser 5",
+        "Dispenser 6",
+        "Dispenser 7",
+        "Dispenser 8",
+        "Dispenser 9",
+        "Dispenser 10",
+      ],
+      title: {
+        text: "Dispensers",
+      },
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Total Products Dispensed",
+      },
+      allowDecimals: false,
+    },
+    legend: {
+      reversed: true,
+    },
+    plotOptions: {
+      series: {
+        stacking: "normal",
+      },
+    },
+    series: [
+      {
+        name: "HIV Test Kits",
+        data: [30, 25, 20, 15, 10, 35, 40, 30, 20, 15],
+      },
+      {
+        name: "Condoms",
+        data: [60, 50, 45, 35, 25, 55, 60, 50, 40, 30],
+      },
+    ],
+  });
+</script>
+
+<script>
+  Highcharts.chart("container", {
+    chart: {
+      type: "pie",
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+    },
+    title: {
+      text: "Age Distribution of Users",
+    },
+    tooltip: {
+      pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+    },
+    accessibility: {
+      point: {
+        valueSuffix: "%",
+      },
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: "pointer",
+        dataLabels: {
+          enabled: true,
+          format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+          connectorColor: "silver",
+          distance: 30, // Adjusts the distance of the label from the pie chart
+          alignTo: null, // Prevents labels from overlapping the chart
+        },
+        size: "80%", // Adjust the size of the pie to be larger
+        showInLegend: true, // Show data labels on the side
+      },
+    },
+    series: [
+      {
+        name: "Users",
+        colorByPoint: true,
+        data: [
+          {
+            name: "18-24 years",
+            y: 35,
+          },
+          {
+            name: "25-34 years",
+            y: 40,
+          },
+          {
+            name: "35-44 years",
+            y: 15,
+          },
+          {
+            name: "45+ years",
+            y: 10,
+          },
+        ],
+      },
+    ],
+    legend: {
+      align: "right",
+      verticalAlign: "middle",
+      layout: "vertical",
+      itemMarginBottom: 10, // Add space between legend items
+    },
+  });
+</script>
+
+<script>
+  Highcharts.chart("container-transactions", {
+    chart: {
+      type: "line",
+    },
+    title: {
+      text: "Monthly Dispensing Trend of Products",
+    },
+    xAxis: {
+      categories: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      title: {
+        text: "Month",
+      },
+    },
+    yAxis: {
+      title: {
+        text: "Number of Products Dispensed",
+      },
+      allowDecimals: false,
+    },
+    tooltip: {
+      split: true,
+      valueSuffix: " units",
+    },
+    plotOptions: {
+      area: {
+        stacking: "normal",
+        lineColor: "#666666",
+        lineWidth: 1,
+        marker: {
+          lineWidth: 1,
+          lineColor: "#666666",
+        },
+      },
+    },
+    series: [
+      {
+        name: "Condoms",
+        data: [120, 150, 170, 200, 220, 180, 210, 190, 230, 250, 270, 300],
+      },
+      {
+        name: "HIV Test Kits",
+        data: [90, 100, 120, 130, 150, 140, 290, 150, 180, 170, 190, 200],
+      },
+    ],
+  });
+</script>
+
+<script>
+  Highcharts.chart("container-age", {
+    chart: {
+      type: "pie",
+    },
+    title: {
+      text: "Gender Distribution of Machine Users",
+    },
+    plotOptions: {
+      pie: {
+        innerSize: "50%", // Makes the pie chart into a donut chart
+        dataLabels: {
+          format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+        },
+      },
+    },
+    series: [
+      {
+        name: "Users",
+        data: [
+          ["Male", 55],
+          ["Female", 45],
+        ],
+      },
+    ],
+  });
+</script>
+
+<script>
+  Highcharts.chart("container-returning", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Returning User Rate Over Time",
+    },
+    xAxis: {
+      categories: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      title: {
+        text: "Month",
+      },
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Number of Returning Users",
+      },
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><br/>',
+      pointFormat:
+        '<span style="color:{point.color}">{series.name}: </span><b>{point.y}</b><br/>',
+    },
+    plotOptions: {
+      column: {
+        dataLabels: {
+          enabled: true,
+        },
+      },
+    },
+    series: [
+      {
+        name: "Returning Users",
+        data: [10, 15, 12, 20, 18, 25, 30, 22, 27, 35, 28, 40],
+      },
+    ],
+  });
+</script>
+
+
+<script>
+    Highcharts.chart('heatmap-container', {
+        chart: {
+            type: 'heatmap',
+            plotBorderWidth: 1,
+            plotBorderColor: '#606060'
+        },
+        title: {
+            text: 'Age and Gender Distribution Heatmap'
+        },
+        xAxis: {
+            categories: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61+'],
+            title: {
+                text: 'Age Group'
+            }
+        },
+        yAxis: {
+            categories: ['Male', 'Female'],
+            title: {
+                text: 'Gender'
+            },
+            reversed: true
+        },
+        colorAxis: {
+            min: 0,
+            max: 100,
+            minColor: '#ffffff',
+            maxColor: '#ff0000'
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> ' +
+                    'age group and <b>' + this.series.yAxis.categories[this.point.y] + '</b> gender<br/>' +
+                    '<b>Density: ' + this.point.value + '</b>';
+            }
+        },
+        series: [{
+            name: 'User Density',
+            borderWidth: 1,
+            data: [
+                [0, 0, 5], [1, 0, 15], [2, 0, 25], [3, 0, 35], [4, 0, 45], [5, 0, 55], [6, 0, 65],
+                [0, 1, 10], [1, 1, 20], [2, 1, 30], [3, 1, 40], [4, 1, 50], [5, 1, 60], [6, 1, 70]
+            ],
+            dataLabels: {
+                enabled: true,
+                color: '#000000'
+            }
+        }]
+    });
+</script>
+
+
+{% endblock %}

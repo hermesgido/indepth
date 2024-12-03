@@ -1,0 +1,341 @@
+{% load static %}
+
+<div class="startbar d-print-none">
+  <style>
+    .logg {
+      margin-left: -70px;
+    }
+  </style>
+
+  <div class="startbar d-print-none">
+    <!--start brand-->
+    <div class="brand">
+      <a href="{% url 'index' %}" class="logo">
+        <span>
+          {% comment %}
+          <img
+            src="{% static 'assets/logos/logo22.png'  %}"
+            alt="logo-small"
+            class="logo-sm"
+            height="40"
+          />
+          {% endcomment %}
+        </span>
+        <span class="logg">
+          <img
+            src="{% static 'assets/logos/logowhite.png'  %}"
+        alt="logo-large"
+            class="logo-lg logo-light"
+            height="80"
+          />
+          <img
+            src="{% static 'assets/logos/logo22.png'  %}"
+            alt="logo-large"
+            class="logo-lg logo-dark"
+            height="80"
+          />
+        </span>
+      </a>
+    </div>
+
+    <!--start brand-->
+    {% comment %}
+    <div class="brand">
+      <a href="{% url 'index' %}" class="logo">
+        <span>
+          <img
+            src="{% static 'assets/images/logo-sm.png'  %}"
+            alt="logo-small"
+            class="logo-sm"
+          />
+        </span>
+        <span class="">
+          <img
+            src="{% static 'assets/images/logo-light.png'  %}"
+            alt="logo-large"
+            class="logo-lg logo-light"
+          />
+          <img
+            src="{% static 'assets/images/logo-dark.png'  %}"
+            alt="logo-large"
+            class="logo-lg logo-dark"
+          />
+        </span>
+      </a>
+    </div>
+    {% endcomment %}
+    <!--end brand-->
+    <!--start startbar-menu-->
+    <div class="startbar-menu">
+      <div class="startbar-collapse" id="startbarCollapse" data-simplebar>
+        <div class="d-flex align-items-start flex-column w-100">
+          <!-- Navigation -->
+          <ul class="navbar-nav mb-auto w-100">
+            <li class="menu-label pt-0 mt-0">
+              <!-- <small class="label-border">
+                                <div class="border_left hidden-xs"></div>
+                                <div class="border_right"></div>
+                            </small> -->
+              <span>Main Menu</span>
+            </li>
+            <li class="nav-item">
+              <a
+              href="{% url 'index' %}"
+                class="nav-link"
+               
+                role="button"
+                aria-expanded="false"
+              >
+                <i class="iconoir-home-simple menu-icon"></i>
+                <span>Dashboard</span>
+              </a>
+              <div class="collapse" id="sidebarDashboards">
+                
+                <!--end nav-->
+              </div>
+              <!--end startbarDashboards-->
+            </li>
+            <!--end nav-item-->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarApplications"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarApplications"
+              >
+                <i class="iconoir-view-grid menu-icon"></i>
+                <span>Mashines</span>
+              </a>
+              <div class="collapse" id="sidebarApplications">
+                <ul class="nav flex-column">
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mashines' %}">All</a>
+                  </li>
+              
+                  <!--end nav-item-->
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarApplications-->
+            </li>
+            <!--end nav-item-->
+            {% comment %} <li class="menu-label mt-2">
+              <small class="label-border">
+                <div class="border_left hidden-xs"></div>
+                <div class="border_right"></div>
+              </small>
+              <span>Components</span>
+            </li> {% endcomment %}
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarElements"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarElements"
+              >
+                <i class="iconoir-compact-disc menu-icon"></i>
+                <span>Customers</span>
+              </a>
+              <div class="collapse" id="sidebarElements">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'customers' %}">All</a>
+                  </li>
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'kvp_customers' %}">KVP Customers</a>
+                  </li>
+                  <!--end nav-item-->
+                  
+                  <!--end nav-item-->
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarElements-->
+            </li>
+            <!--end nav-item-->
+          
+            <!--end nav-item-->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarForms"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarForms"
+              >
+                <i class="iconoir-journal-page menu-icon"></i>
+                <span>Staffs</span>
+              </a>
+              <div class="collapse" id="sidebarForms">
+                <ul class="nav flex-column">
+            
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'staff' %}"
+                      >All</a
+                    >
+                  </li>
+                  <!--end nav-item-->
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarForms-->
+            </li>
+            <!--end nav-item-->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarCharts"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarCharts"
+              >
+                <i class="iconoir-candlestick-chart menu-icon"></i>
+                <span>Reports</span>
+              </a>
+              <div class="collapse" id="sidebarCharts">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Reports">All</a>
+                  </li>
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarCharts-->
+            </li>
+            <!--end nav-item-->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarTables"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarTables"
+              >
+                <i class="iconoir-table-rows menu-icon"></i>
+                <span>Products</span>
+              </a>
+              <div class="collapse" id="sidebarTables">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/products">All</a>
+                  </li>
+                  
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarTables-->
+            </li>
+            <!--end nav-item-->
+           
+        
+            <!--end nav-item-->
+            
+            <!--end nav-item-->
+            <li class="menu-label mt-2">
+              <small class="label-border">
+                <div class="border_left hidden-xs"></div>
+                <div class="border_right"></div>
+              </small>
+              <span>Crafted</span>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarPages"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarPages"
+              >
+                <i class="iconoir-page-star menu-icon"></i>
+                <span>More</span>
+              </a>
+              <div class="collapse" id="sidebarPages">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/sms">SMS Configurations</a>
+                  </li>
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="/sms"
+                      >Email Configurations</a
+                    >
+                  </li>
+                  <!--end nav-item-->
+                 
+                
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="/api">API</a>
+                  </li>
+                  <!--end nav-item-->
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarPages-->
+            </li>
+
+
+            
+            <!--end nav-item-->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#sidebarAuthentication"
+                data-bs-toggle="collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="sidebarAuthentication"
+              >
+                <i class="iconoir-fingerprint-lock-circle menu-icon"></i>
+                <span>Settings</span>
+              </a>
+              <div class="collapse" id="sidebarAuthentication">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'permissions' %}">Permissions</a>
+                  </li>
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'roles' %}">Roles</a>
+                  </li>
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'audit_logs' %}"
+                      >Audit Logs</a
+                    >
+                  </li>
+                  <!--end nav-item-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="/backups"
+                      >Backups</a
+                    >
+                  </li>
+                  <!--end nav-item-->
+                 
+                  <!--end nav-item-->
+                </ul>
+                <!--end nav-->
+              </div>
+              <!--end startbarAuthentication-->
+            </li>
+            <!--end nav-item-->
+          </ul>
+         
+        </div>
+      </div>
+      <!--end startbar-collapse-->
+    </div>
+    <!--end startbar-menu-->
+  </div>
+</div>

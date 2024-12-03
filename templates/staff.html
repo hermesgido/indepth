@@ -1,0 +1,374 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Staff Members</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <a
+                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        <i class="iconoir-filter-alt me-1"></i> Filter
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-start">
+                        <div class="p-2">
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-all"
+                            />
+                            <label class="form-check-label" for="filter-all">
+                              All
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-one"
+                            />
+                            <label class="form-check-label" for="filter-one">
+                              New
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-two"
+                            />
+                            <label class="form-check-label" for="filter-two">
+                              VIP
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-six"
+                            />
+                            <label class="form-check-label" for="filter-six">
+                              Loyal
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-auto">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addBoard"
+                      >
+                        <i class="fa-solid fa-plus me-1"></i> Add Staff
+                      </button>
+                    </div>
+                    <!--end col-->
+                  </form>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check-all"
+                            id="check-all"
+                          />
+                        </div>
+                      </th>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Position</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Department</th>
+                      <th>Joining Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check1"
+                          />
+                        </div>
+                      </td>
+                      <td>001</td>
+                      <td>John Doe</td>
+                      <td>Software Engineer</td>
+                      <td>+255 711 123456</td>
+                      <td>john.doe@example.com</td>
+                      <td>IT</td>
+                      <td>2022-01-15</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check2"
+                          />
+                        </div>
+                      </td>
+                      <td>002</td>
+                      <td>Jane Smith</td>
+                      <td>Marketing Manager</td>
+                      <td>+255 712 234567</td>
+                      <td>jane.smith@example.com</td>
+                      <td>Marketing</td>
+                      <td>2021-06-22</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check3"
+                          />
+                        </div>
+                      </td>
+                      <td>003</td>
+                      <td>Michael Johnson</td>
+                      <td>HR Specialist</td>
+                      <td>+255 713 345678</td>
+                      <td>michael.johnson@example.com</td>
+                      <td>HR</td>
+                      <td>2020-11-10</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check4"
+                          />
+                        </div>
+                      </td>
+                      <td>004</td>
+                      <td>Emily Davis</td>
+                      <td>Financial Analyst</td>
+                      <td>+255 714 456789</td>
+                      <td>emily.davis@example.com</td>
+                      <td>Finance</td>
+                      <td>2019-09-30</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check5"
+                          />
+                        </div>
+                      </td>
+                      <td>005</td>
+                      <td>Sarah Brown</td>
+                      <td>Customer Support</td>
+                      <td>+255 715 567890</td>
+                      <td>sarah.brown@example.com</td>
+                      <td>Customer Service</td>
+                      <td>2018-07-25</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check6"
+                          />
+                        </div>
+                      </td>
+                      <td>006</td>
+                      <td>David Wilson</td>
+                      <td>Product Manager</td>
+                      <td>+255 716 678901</td>
+                      <td>david.wilson@example.com</td>
+                      <td>Product</td>
+                      <td>2022-03-15</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check7"
+                          />
+                        </div>
+                      </td>
+                      <td>007</td>
+                      <td>Laura Martinez</td>
+                      <td>UI/UX Designer</td>
+                      <td>+255 717 789012</td>
+                      <td>laura.martinez@example.com</td>
+                      <td>Design</td>
+                      <td>2021-12-20</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check8"
+                          />
+                        </div>
+                      </td>
+                      <td>008</td>
+                      <td>Chris Taylor</td>
+                      <td>Web Developer</td>
+                      <td>+255 718 890123</td>
+                      <td>chris.taylor@example.com</td>
+                      <td>IT</td>
+                      <td>2020-10-10</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check9"
+                          />
+                        </div>
+                      </td>
+                      <td>009</td>
+                      <td>Alice Walker</td>
+                      <td>Content Writer</td>
+                      <td>+255 719 901234</td>
+                      <td>alice.walker@example.com</td>
+                      <td>Marketing</td>
+                      <td>2018-05-05</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 16px">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            name="check"
+                            id="check10"
+                          />
+                        </div>
+                      </td>
+                      <td>010</td>
+                      <td>James King</td>
+                      <td>Operations Manager</td>
+                      <td>+255 720 123456</td>
+                      <td>james.king@example.com</td>
+                      <td>Operations</td>
+                      <td>2022-07-10</td>
+                      <td>Active</td>
+                      <td class="text-end">
+                        <button class="btn btn-primary">Edit</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+
+    <!--end footer-->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,278 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Audit Logs</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <a
+                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        <i class="iconoir-filter-alt me-1"></i> Filter
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-start">
+                        <div class="p-2">
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-all"
+                            />
+                            <label class="form-check-label" for="filter-all">
+                              All
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-one"
+                            />
+                            <label class="form-check-label" for="filter-one">
+                              New
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-two"
+                            />
+                            <label class="form-check-label" for="filter-two">
+                              VIP
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-six"
+                            />
+                            <label class="form-check-label" for="filter-six">
+                              Loyal
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-auto">
+                     
+                    </div>
+                    <!--end col-->
+                  </form>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+              
+     <table class="table">
+    <thead>
+        <tr>
+            <th style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check-all-audit-logs" id="check-all-audit-logs">
+                </div>
+            </th>
+            <th>Log ID</th>
+            <th>Timestamp</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Details</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check1">
+                </div>
+            </td>
+            <td>AL001</td>
+            <td>2024-09-17 10:00:00</td>
+            <td>admin</td>
+            <td>Added Product</td>
+            <td>Added a new product with ID 123</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check2">
+                </div>
+            </td>
+            <td>AL002</td>
+            <td>2024-09-17 11:15:22</td>
+            <td>manager</td>
+            <td>Updated Product</td>
+            <td>Updated price for product ID 456</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check3">
+                </div>
+            </td>
+            <td>AL003</td>
+            <td>2024-09-17 12:30:45</td>
+            <td>technician</td>
+            <td>Serviced Vending Machine</td>
+            <td>Serviced vending machine ID 789</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check4">
+                </div>
+            </td>
+            <td>AL004</td>
+            <td>2024-09-17 14:00:00</td>
+            <td>admin</td>
+            <td>Deleted Product</td>
+            <td>Deleted product with ID 234</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check5">
+                </div>
+            </td>
+            <td>AL005</td>
+            <td>2024-09-17 15:45:10</td>
+            <td>support</td>
+            <td>Processed Refund</td>
+            <td>Refunded $10 for transaction ID 567</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check6">
+                </div>
+            </td>
+            <td>AL006</td>
+            <td>2024-09-17 16:20:30</td>
+            <td>admin</td>
+            <td>Updated System Settings</td>
+            <td>Changed system settings for notification</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check7">
+                </div>
+            </td>
+            <td>AL007</td>
+            <td>2024-09-17 17:05:50</td>
+            <td>manager</td>
+            <td>Viewed Sales Report</td>
+            <td>Viewed sales report for September 2024</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check8">
+                </div>
+            </td>
+            <td>AL008</td>
+            <td>2024-09-17 18:00:00</td>
+            <td>technician</td>
+            <td>Restocked Vending Machine</td>
+            <td>Restocked items in vending machine ID 123</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check9">
+                </div>
+            </td>
+            <td>AL009</td>
+            <td>2024-09-17 19:15:10</td>
+            <td>admin</td>
+            <td>Added User</td>
+            <td>Added new user with username jdoe</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="log-check10">
+                </div>
+            </td>
+            <td>AL010</td>
+            <td>2024-09-17 20:25:30</td>
+            <td>support</td>
+            <td>Resolved Issue</td>
+            <td>Resolved issue reported by user ID 789</td>
+            <td>Success</td>
+            <td class="text-end"><button class="btn btn-primary">View</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+
+    <!--end footer-->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

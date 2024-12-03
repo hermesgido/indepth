@@ -1,0 +1,274 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Permissions</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <a
+                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        <i class="iconoir-filter-alt me-1"></i> Filter
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-start">
+                        <div class="p-2">
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-all"
+                            />
+                            <label class="form-check-label" for="filter-all">
+                              All
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-one"
+                            />
+                            <label class="form-check-label" for="filter-one">
+                              New
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-two"
+                            />
+                            <label class="form-check-label" for="filter-two">
+                              VIP
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-six"
+                            />
+                            <label class="form-check-label" for="filter-six">
+                              Loyal
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-auto">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addBoard"
+                      >
+                        <i class="fa-solid fa-plus me-1"></i> Add Permission
+                      </button>
+                    </div>
+                    <!--end col-->
+                  </form>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+              
+     <table class="table">
+    <thead>
+        <tr>
+            <th style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check-all-permissions" id="check-all-permissions">
+                </div>
+            </th>
+            <th>Permission ID</th>
+            <th>Permission Name</th>
+            <th>Description</th>
+            <th>Role(s) Assigned</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check1">
+                </div>
+            </td>
+            <td>P001</td>
+            <td>view_products</td>
+            <td>View products</td>
+            <td>Administrator, Sales Representative</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check2">
+                </div>
+            </td>
+            <td>P002</td>
+            <td>add_products</td>
+            <td>Add products</td>
+            <td>Administrator</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check3">
+                </div>
+            </td>
+            <td>P003</td>
+            <td>edit_products</td>
+            <td>Edit products</td>
+            <td>Administrator</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check4">
+                </div>
+            </td>
+            <td>P004</td>
+            <td>delete_products</td>
+            <td>Delete products</td>
+            <td>Administrator</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check5">
+                </div>
+            </td>
+            <td>P005</td>
+            <td>view_sales_reports</td>
+            <td>View sales reports</td>
+            <td>Administrator, Manager</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check6">
+                </div>
+            </td>
+            <td>P006</td>
+            <td>manage_vending_machines</td>
+            <td>Manage vending machines</td>
+            <td>Administrator, Technician</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check7">
+                </div>
+            </td>
+            <td>P007</td>
+            <td>view_transactions</td>
+            <td>View transactions</td>
+            <td>Administrator, Financial Analyst</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check8">
+                </div>
+            </td>
+            <td>P008</td>
+            <td>process_refunds</td>
+            <td>Process refunds</td>
+            <td>Administrator, Customer Support</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check9">
+                </div>
+            </td>
+            <td>P009</td>
+            <td>view_user_profiles</td>
+            <td>View user profiles</td>
+            <td>Administrator, Customer Support</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td style="width: 16px;">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="check" id="permission-check10">
+                </div>
+            </td>
+            <td>P010</td>
+            <td>update_system_settings</td>
+            <td>Update system settings</td>
+            <td>Administrator</td>
+            <td>Active</td>
+            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+
+    <!--end footer-->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

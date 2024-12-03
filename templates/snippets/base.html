@@ -1,0 +1,27 @@
+{% load static %} {% include 'snippets/head.html' %}
+
+  <body>
+    {% include 'snippets/topbar.html' %}
+    <!-- Top Bar End -->
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- leftbar-tab-menu -->
+    {% include 'snippets/sidebar.html' %}
+    <!--end startbar-->
+
+    <div class="startbar-overlay d-print-none"></div>
+    <!-- end leftbar-tab-menu-->
+
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+
+    {% include 'snippets/footer.html' %}
+  </body>
+  <!--end body-->
+</html>

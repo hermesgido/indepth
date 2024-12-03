@@ -1,9 +1,15 @@
 
 from pathlib import Path
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+# DEBUG = config('DEBUG', default=False, cast=bool)
+ENV = config('ENV', default='development')
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ndf408ar9r-(co_b&oc=#(tq0!6jzw98ig)6u#1w(d)(1-1den'
+# SECRET_KEY = 'django-insecure-ndf408ar9r-(co_b&oc=#(tq0!6jzw98ig)6u#1w(d)(1-1den'
 
 DEBUG = True
 
@@ -69,24 +75,44 @@ TEMPLATES = [
 WSGI_APPLICATION = 'indepth.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database Configuration
+if ENV == 'production':
+    DATABASES = {
+        'default': {
+            'ENGINE': config('DB_ENGINE'),
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT', cast=int),
+        }
     }
-}
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'indepth',  
-        'USER': 'indepth',      
-        'PASSWORD': 'indepth',   
-        'HOST': 'localhost',           
-        'PORT': '5432',               
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+if config('ENV') ==  'production':   
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'indepth',  
+            'USER': 'indepth',      
+            'PASSWORD': 'indepth',   
+            'HOST': 'localhost',           
+            'PORT': '5432',               
+        }
+    }
+else:   
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -103,6 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 LANGUAGE_CODE = 'en-us'
 
