@@ -75,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'indepth.wsgi.application'
 
 
-# Database Configuration
+# Database Configuration edited
 if ENV == 'production':
     DATABASES = {
         'default': {
