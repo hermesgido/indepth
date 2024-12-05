@@ -68,7 +68,7 @@ class Customer(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     ##for KVP PINS
-    pin = models.CharField(max_length=50, null=True, blank=True, unique=True),
+    pin = models.CharField(max_length=50, null=True, blank=True, unique=True)
     pin_type = models.CharField(
         max_length=50, null=True, blank=True, choices=PIN_TYPES)
     expire_date = models.DateField(null=True, blank=True)
