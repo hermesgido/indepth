@@ -103,11 +103,15 @@ class TransactionCreateAPIView(APIView):
             return Response({"status": "error", "message": "Machine not found"})
         amount = request.data.get("amount")
         product_type = request.data.get("product_type")
+        slot_number = request.data.get("slot_number")
+        slot = Slot.objects.filter(
+            machine=machine, slot_number=slot_number).first()
         transaction = Transaction.objects.create(
             customer=customer,
             machine=machine,
             amount=amount,
-            product_type=product_type
+            product_type=product_type,
+            slot = slot
         )
         transaction.save()
         return Response({"status": "success", "data": get_transaction_data(transaction), "message": "Transaction created successfully"})

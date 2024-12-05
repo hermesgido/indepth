@@ -108,6 +108,7 @@ class Transaction(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
     amount = models.IntegerField()
+    slot = models.ForeignKey(Slot, on_delete=models.CASCADE, null=True, blank=True)
     product_type = models.CharField(max_length=50, null=True, blank=True, choices=PRODUCT_TYPES)
     created_at = models.DateTimeField(auto_now_add=True)
     
