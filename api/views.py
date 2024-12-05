@@ -129,6 +129,7 @@ class MachineSlotsAPIView(APIView):
                 "id": slot.id,
                 "name": slot.name,
                 "product_type": slot.product_type,
+                "slot_number": slot.slot_number,
                 "price": slot.price,
                 "capacity": slot.capacity,
                 "quantity": slot.quantity_available,
