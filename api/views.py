@@ -132,22 +132,7 @@ class MachineSlotsAPIView(APIView):
                 # "updated_at": slot.updated_at,
             })
         return Response({"status": "success", "data": data})
-       
     
-
-# class VendingMashineCallBackAPI(APIView):
-#     def get(self, request):
-#         print(request.data)
-#         print("Getting.....")
-
-
-#         return Response({"status": "success", "message": "Machine status updated successfully"})
-#     def post(self, request):
-#         print(request.data)
-#         print("Postingg")
-
-#         return Response({"status": "success", "message": "Machine status updated successfully"})
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
