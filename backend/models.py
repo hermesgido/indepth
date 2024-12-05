@@ -24,6 +24,13 @@ PRODUCT_TYPES = (
     ('Condoms', 'Condoms'),
     ('Kits', 'Kits'),
 )
+
+
+TRANSCTION_STATUSES  = (
+    ('Pending', 'Pending'),
+    ('Completed', 'Completed'),
+    ('Failed', 'Failed'),
+)
 class Machine(models.Model):
     name = models.CharField(max_length=50)
     machine_id = models.CharField(max_length=50, unique=True)
@@ -98,11 +105,6 @@ class Customer(models.Model):
                 return  limits
             elif self.client_group == "AGYW":
                 limits = { "condom": 3, "kits": 3}
-    
-    
-        
-    
-
 
 class Transaction(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -110,5 +112,8 @@ class Transaction(models.Model):
     amount = models.IntegerField()
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE, null=True, blank=True)
     product_type = models.CharField(max_length=50, null=True, blank=True, choices=PRODUCT_TYPES)
-    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
     
