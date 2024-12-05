@@ -106,19 +106,19 @@ class Customer(models.Model):
             return  limits
         elif type == "Client Group":
             if self.client_group == "FSW":
-                limits = { "condom": 3, "kits": 3}
+                limits = { "condom": 5, "kits": 3}
                 return  limits
             elif self.client_group == "MSM":
-                limits = { "condom": 3, "kits": 3}
+                limits = { "condom": 5, "kits": 3}
                 return  limits
             elif self.client_group == "PWID":
-                limits = { "condom": 3, "kits": 3}
+                limits = { "condom": 5, "kits": 3}
                 return  limits
             elif self.client_group == "MAT":
-                limits = { "condom": 3, "kits": 3}
+                limits = { "condom": 5, "kits": 3}
                 return  limits
             elif self.client_group == "AGYW":
-                limits = { "condom": 3, "kits": 3}
+                limits = { "condom": 5, "kits": 3}
 
 class Transaction(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
