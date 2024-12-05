@@ -20,6 +20,14 @@ def get_customer_data(customer):
         "kits_transaction_limit": customer.kits_transaction_limit,
         "today_condom_transactions": customer.today_condom_transactions,
         "today_kits_transactions": customer.today_kits_transactions,
+        ##special for kvp customers
+        "pin": customer.pin,
+        "pin_type": customer.pin_type,
+        "expire_date": customer.expire_date,
+        "description": customer.description,
+        "status": customer.status,
+        "hotspot": customer.hotspot,
+        
         "created_at": customer.created_at,
         "updated_at": customer.updated_at,
     }

@@ -26,6 +26,11 @@ PRODUCT_TYPES = (
 )
 
 
+PIN_TYPES = (
+    ('PERMANENT', 'PERMANENT'),
+)
+
+
 TRANSCTION_STATUSES  = (
     ('Pending', 'Pending'),
     ('Completed', 'Completed'),
@@ -60,8 +65,17 @@ class Customer(models.Model):
     age = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(max_length=50, null=True, blank=True, choices=GENDERS)
     registered_machine = models.ForeignKey(Machine, on_delete=models.CASCADE, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    ##for KVP PINS
+    pin = models.CharField(max_length=50, null=True, blank=True, unique=True),
+    pin_type = models.CharField(
+        max_length=50, null=True, blank=True, choices=PIN_TYPES)
+    expire_date = models.DateField(null=True, blank=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
+    status = models.CharField(max_length=50, null=True, blank=True)
+    hotspot = models.CharField(max_length=50, null=True, blank=True)
+    
     
 
     @property
