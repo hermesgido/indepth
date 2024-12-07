@@ -11,13 +11,25 @@
 
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Machine, Slot, Customer, Transaction
+from .models import Facility, Machine, Slot, Customer, Transaction
 
 
 class MachineAdmin(admin.ModelAdmin):
     list_display = ('name', 'machine_id', 'location', 'status', 'description')
     search_fields = ('name', 'machine_id', 'location')
     list_filter = ('status', 'location')
+
+
+
+class FacilityAdmin(admin.ModelAdmin):
+    list_display  = ('district', 'ward', 'supporting_facility', 'responsible_cso',
+                     'responsible_person', 'mobile_no', 'app_password', 'status', 'created_at', 'updated_at')
+    search_fields =('district', 'ward', 'supporting_facility', 'responsible_cso',
+                    'responsible_person', 'mobile_no', 'app_password', 'status')
+    list_filter =('district', 'ward', 'supporting_facility', 'responsible_cso',
+                  'responsible_person', 'mobile_no', 'app_password', 'status')
+
+
 
 
 class SlotAdmin(admin.ModelAdmin):
@@ -78,6 +90,7 @@ admin.site.register(Machine, MachineAdmin)
 admin.site.register(Slot, SlotAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Transaction, TransactionAdmin)
+admin.site.register(Facility, FacilityAdmin)
 
 # Customizing Admin Dashboard
 admin.site.site_header = "Transaction Management System"
