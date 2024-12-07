@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from backend.models import Customer, Machine, Slot, Transaction
-
+from django.db.models import Q
 
 class HelloWorldView(APIView):
     permission_classes = [IsAuthenticated]
@@ -104,7 +104,8 @@ class TransactionCreateAPIView(APIView):
     def post(self, request):
         phone_number = request.data.get("phone_number")
         product_type = request.data.get("product_type")
-        customer = Customer.objects.filter(phone_number=phone_number).first()
+        pn = Q(phone_number=phone_number) | Q(pin=phone_number)
+        customer = Customer.objects.filter(pn).first()
         if not customer:
             return Response({"status": "error", "message": "Customer not found"})
         if product_type == "Condoms":
