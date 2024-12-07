@@ -42,6 +42,7 @@ class Machine(models.Model):
     machine_id = models.CharField(max_length=50, unique=True)
     location = models.CharField(max_length=50, null=True, blank=True)
     status = models.CharField(max_length=50, null=True, blank=True)
+    password = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=200, null=True, blank=True)
     
     def __str__(self):

@@ -87,7 +87,7 @@ class Command(BaseCommand):
                 "district": "Tunduma TC",
                 "ward": "Mpemba",
                 "supporting_facility": "Tunduma Hospital",
-                "hrfcode": "113990-6",
+                "hfrcode": "113990-6",
                 "responsible_cso": "IRDO",
                 "responsible_person": "TBD",
                 "mobile_no": "TBD",
@@ -119,7 +119,31 @@ class Command(BaseCommand):
         ]
 
         for facility in facilities:
-            Facility.objects.create(**facility)
+            facility_obj, created = Facility.objects.update_or_create(
+                district=facility["district"],
+                ward=facility["ward"],
+                supporting_facility=facility["supporting_facility"],
+                hfrcode=facility["hfrcode"],
+                defaults={
+                    "responsible_cso": facility["responsible_cso"],
+                    "responsible_person": facility["responsible_person"],
+                    "mobile_no": facility["mobile_no"],
+                    "app_password": facility["app_password"],
+                }
+            )
+
+            
+            if created:
+                self.stdout.write(self.style.SUCCESS(
+                    f"Created facility: {facility_obj}"))
+            else:
+                self.stdout.write(self.style.NOTICE(
+                    f"Updated facility: {facility_obj}"))
+
+            
+            facility_obj.save()  # Save the updated data back to the database
+            
+           
 
         self.stdout.write(self.style.SUCCESS(
             "Facility data seeded successfully."))

@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from backend.models import Customer, Machine, Slot, Transaction
+from backend.models import Customer, Facility, Machine, Slot, Transaction
 from django.db.models import Q
 
 class HelloWorldView(APIView):
@@ -229,3 +229,20 @@ class VendingMashineCallBackAPI(APIView):
         else:
             print("Unknown Funcode")
             return Response({"status": "failure", "message": "Unknown FunCode"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SetMachineIdAndPassword(APIView):
+    def post(self, request):
+        machine_id = request.data.get("machine_id")
+        password = request.data.get("password")
+        phone_numner = request.data.get("password")
+        machine = Machine.objects.filter(machine_id=machine_id).first()
+        if not machine:
+            return Response({"status": "error", "message": "Machine not found"})
+        facility = Facility.objects.filter(phone_number=phone_numner, machine=machine).first()
+        if not facility:
+            return Response({"status": "error", "message": "Facility not found"})
+    
+        machine.password = password
+        machine.save()
+        return Response({"status": "success", "message": "Machine password set successfully"})
