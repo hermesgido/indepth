@@ -43,6 +43,9 @@ class Machine(models.Model):
     status = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=200, null=True, blank=True)
     
+    def __str__(self):
+        return self.name + self.machine_id
+    
 class Slot(models.Model):
     name = models.CharField(max_length=50)
     slot_number  = models.IntegerField()
@@ -54,6 +57,9 @@ class Slot(models.Model):
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name
 
 
 class Customer(models.Model):
@@ -75,6 +81,9 @@ class Customer(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     status = models.CharField(max_length=50, null=True, blank=True)
     hotspot = models.CharField(max_length=50, null=True, blank=True)
+    
+    def __str__(self):
+        return self.phone_number if self.phone_number else self.pin
     
     
 
@@ -129,5 +138,9 @@ class Transaction(models.Model):
     status = models.CharField(max_length=50, null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        numbr = self.customer.phone_number if self.customer.phone_number else self.customer.pin
+        return numbr  + self.product_type + str(self.amount)
 
     
