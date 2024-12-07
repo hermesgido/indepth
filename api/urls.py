@@ -12,5 +12,8 @@ urlpatterns = [
          name='transaction-create'),
     path('vending/', VendingMashineCallBackAPI.as_view(), name='vending-machine-callback'),
     path('machine-slots/<str:machine_id>', MachineSlotsAPIView.as_view(), name='machine-slots'),
+    path('machine-slots/',
+         MachineSlotsAPIView.as_view(), name='machine-slots'),
+
     path('machine-login/', SetMachineIdAndPassword.as_view(), name="machine-login"),
 ]

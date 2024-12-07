@@ -139,6 +139,10 @@ class TransactionCreateAPIView(APIView):
 
 class MachineSlotsAPIView(APIView):
     def get(self, request, machine_id):
+        if machine_id is None:
+            return Response({"status": "error", "message": "Machine ID is required"})
+        if not machine_id:
+            return Response({"status": "error", "message": "Invalid machine ID is requred"})
         machine = Machine.objects.filter(machine_id=machine_id).first()
         if not machine:
             return Response({"status": "error", "message": "Machine not found"})
