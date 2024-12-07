@@ -1,5 +1,4 @@
 import logging
-from .models import Machine, Facility
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
 from rest_framework.views import APIView
