@@ -1,3 +1,6 @@
+import logging
+from .models import Machine, Facility
+from django.contrib.auth.hashers import make_password
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -231,18 +234,60 @@ class VendingMashineCallBackAPI(APIView):
             return Response({"status": "failure", "message": "Unknown FunCode"}, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Set up logging
+logger = logging.getLogger(__name__)
+
+
 class SetMachineIdAndPassword(APIView):
     def post(self, request):
-        machine_id = request.data.get("machine_id")
-        password = request.data.get("password")
-        phone_numner = request.data.get("password")
-        machine = Machine.objects.filter(machine_id=machine_id).first()
-        if not machine:
-            return Response({"status": "error", "message": "Machine not found"})
-        facility = Facility.objects.filter(phone_number=phone_numner, machine=machine).first()
-        if not facility:
-            return Response({"status": "error", "message": "Facility not found"})
-    
-        machine.password = password
-        machine.save()
-        return Response({"status": "success", "message": "Machine password set successfully"})
+        try:
+            # Extract data from the request
+            machine_id = request.data.get("machine_id")
+            password = request.data.get("password")
+            phone_number = request.data.get("phone_number")
+
+            # Validate required fields
+            if not all([machine_id, password, phone_number]):
+                return Response(
+                    {"status": "error", "message": "All fields are required"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            # Check if machine exists
+            machine = Machine.objects.filter(machine_id=machine_id).first()
+            if not machine:
+                return Response(
+                    {"status": "error", "message": "Machine not found"},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            # Check if facility exists
+            facility = Facility.objects.filter(
+                mobile_no=phone_number, machine=machine).first()
+            if not facility:
+                return Response(
+                    {"status": "error", "message": "Facility not found"},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            # Update machine password
+            machine.password = password # Hash the password
+            machine.save()
+
+            return Response(
+                {"status": "success", "message": f"Machine password set successfully {e}"},
+                status=status.HTTP_200_OK,
+            )
+
+        except Exception as e:
+            # Log the exception for debugging purposes
+            logger.error(f"An error occurred: {e}")
+
+            # Return a generic error response
+            return Response(
+                {
+                    "status": "error",
+                    "message": "An unexpected error occurred. Please try again later, ",
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
