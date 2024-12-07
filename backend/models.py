@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -143,4 +144,34 @@ class Transaction(models.Model):
         numbr = self.customer.phone_number if self.customer.phone_number else self.customer.pin
         return numbr  + self.product_type + str(self.amount)
 
+
+class Facility(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    machine = models.ForeignKey(Machine, null=True, blank=True, on_delete=models.CASCADE)
+    district = models.CharField(
+        max_length=100, verbose_name="District Supporting Ward",  null=True, blank=True)
+    ward = models.CharField(
+        max_length=100, verbose_name="Supporting Ward",  null=True, blank=True)
+    hfrcode = models.CharField(
+        max_length=15, verbose_name="HFR Code", null=True, blank=True)
+    supporting_facility = models.CharField(
+        max_length=100, verbose_name="Supporting Facility",  null=True, blank=True)
+    responsible_cso = models.CharField(
+        max_length=100, verbose_name="Responsible CSO",  null=True, blank=True)
+    responsible_person = models.CharField(
+        max_length=100, verbose_name="Responsible Person",  null=True, blank=True)
+    mobile_no = models.CharField(max_length=15, verbose_name="Mobile Number", null=True, blank=True)
+    app_password =  models.CharField(
+        max_length=15, verbose_name="App Password", null=True, blank=True)
+    status = models.CharField(max_length=50, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     
+
+    class Meta:
+        verbose_name = "District Support"
+        verbose_name_plural = "District Supports"
+        ordering = ['district', 'ward']
+
+    def __str__(self):
+        return f"{self.district} - {self.ward}"
