@@ -274,7 +274,7 @@ class SetMachineIdAndPassword(APIView):
             machine.save()
 
             return Response(
-                {"status": "success", "message": f"Machine password set successfully {e}"},
+                {"status": "success", "message": f"Machine password set successfully "},
                 status=status.HTTP_200_OK,
             )
 
@@ -286,7 +286,7 @@ class SetMachineIdAndPassword(APIView):
             return Response(
                 {
                     "status": "error",
-                    "message": "An unexpected error occurred. Please try again later, ",
+                    "message": f"An unexpected error occurred. Please try again later, {e}",
                 },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
