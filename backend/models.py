@@ -137,7 +137,8 @@ class Transaction(models.Model):
     amount = models.IntegerField()
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE, null=True, blank=True)
     product_type = models.CharField(max_length=50, null=True, blank=True, choices=PRODUCT_TYPES)
-    status = models.CharField(max_length=50, null=True, blank=True)
+    status = models.CharField(max_length=50, null=True,
+                              blank=True, choices=TRANSCTION_STATUSES)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
