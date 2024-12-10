@@ -26,7 +26,7 @@ class VendingMashineCallBackAPI(APIView):
             data = request.POST.dict()
         else:
             return Response({"status": "Unsupported content type"}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
-        print("Received Data: {0}".format(request.data))
+        print("Received Data Is: {0}".format(request.data))
 
         fun_code = request.data.get("FunCode")
         if fun_code == "1000":
@@ -36,6 +36,7 @@ class VendingMashineCallBackAPI(APIView):
             print("Code 2000")
             # return verify_pickup_code_2000(request)
         elif fun_code == "4000":
+            print("Code 4000 Received")
             return Response({
                 "Status": "0",
                 "MsgType": "0",
