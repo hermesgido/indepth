@@ -40,7 +40,7 @@ class VendingMashineCallBackAPI(APIView):
             return Response({
                 "Status": "0",
                 "MsgType": "0",
-                "SlotNo": -1,
+                "SlotNo": "1",
                 "ProductID": "222",
                 "TradeNo": "2222",
                 "Err": "success"
