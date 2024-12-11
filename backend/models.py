@@ -34,6 +34,7 @@ PIN_TYPES = (
 
 TRANSCTION_STATUSES  = (
     ('Pending', 'Pending'),
+    ('Processing', 'Processing'),
     ('Completed', 'Completed'),
     ('Failed', 'Failed'),
 )
@@ -59,6 +60,12 @@ class Slot(models.Model):
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def get_product_id(self):
+        if self.product_type == "Kits":
+            return "222"
+        else:
+            return "111"
     
     def __str__(self):
         return self.name
@@ -134,18 +141,37 @@ class Customer(models.Model):
 class Transaction(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
-    amount = models.IntegerField()
+    amount = models.IntegerField(default=0)
+    dispensed_amount = models.IntegerField(default=0)
+    dispensed_successful_amount = models.IntegerField(default=0)
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE, null=True, blank=True)
-    product_type = models.CharField(max_length=50, null=True, blank=True, choices=PRODUCT_TYPES)
+    product_type = models.CharField(
+        max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, default="Pending")
     status = models.CharField(max_length=50, null=True,
                               blank=True, choices=TRANSCTION_STATUSES)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
+        
         numbr = self.customer.phone_number if self.customer.phone_number else self.customer.pin
         return numbr  + self.product_type + str(self.amount)
 
+class TransactionLog(models.Model):
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
+    slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
+    product_type = models.CharField(
+        max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, default="Pending")
+    status = models.CharField(max_length=50, null=True,  blank=True, choices=TRANSCTION_STATUSES)
+    status_description = models.CharField(max_length=200, null=True, blank=True)
+    feedback_status = models.CharField(max_length=20, null=True, blank=True)
+    index = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.transaction.customer.phone_number if self.transaction.customer.phone_number else self.transaction.customer.pin + self.product_type + "Log"
 
 class Facility(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)

@@ -37,17 +37,9 @@ class VendingMashineCallBackAPI(APIView):
             # return verify_pickup_code_2000(request)
         elif fun_code == "4000":
             print("Code 4000 Received")
-            return Response({
-                "Status": "0",
-                "MsgType": "0",
-                "SlotNo": 2,
-                "ProductID": "222",
-                "TradeNo": "2222",
-                "Err": "success"
-            })
             return polling_interface_4000(request)
-        # elif fun_code == "5000":
-        #     return delivery_result_feedback_5000(request)
-        # elif fun_code == "5001":
-        #     return restock_result_feedback_5001(request)
+        elif fun_code == "5000":
+            return delivery_result_feedback_5000(request)
+        elif fun_code == "5001":
+            return restock_result_feedback_5001(request)
         return Response({"Status": "1", "Err": "Invalid FunCode"}, status=400)

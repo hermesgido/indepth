@@ -1,3 +1,4 @@
+import datetime
 import logging
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
@@ -5,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .vending import VendingMashineCallBackAPI
-from backend.models import Customer, Facility, Machine, Slot, Transaction
+from backend.models import Customer, Facility, Machine, Slot, Transaction, TransactionLog
 from django.db.models import Q
 
 class HelloWorldView(APIView):
@@ -134,6 +135,17 @@ class TransactionCreateAPIView(APIView):
             slot=slot
         )
         transaction.save()
+        # Save transaction logs
+        (TransactionLog.objects.create(transaction=transaction,machine=machine,slot=slot, product_type=product_type,index=i) for i in transaction.amount)
+        
+        # for i in transaction.amount:
+        #     TransactionLog.objects.create(
+        #         transaction=transaction,
+        #         machine=machine,
+        #         slot=slot,
+        #         product_type=product_type,
+        #         index=i,
+        #     )
         return Response({"status": "success", "data": get_transaction_data(transaction), "message": "Transaction created successfully"})
 
 
