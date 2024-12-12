@@ -27,10 +27,11 @@ class VendingMashineCallBackAPI(APIView):
         else:
             return Response({"status": "Unsupported content type"}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
         # print("Received Data Is: {0}".format(request.data))
+        fun_code = request.data.get("FunCode")
         MachineID = Machine.objects.filter(
             machine_id=request.data.get("MachineID")).first()
         MachineLogs.objects.create(
-            machine=MachineID, response=request.data).save()
+            machine=MachineID, function_code = fun_code, response=request.data).save()
         fun_code = request.data.get("FunCode")
         if fun_code == "1000":
             pass
