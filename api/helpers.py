@@ -1,3 +1,4 @@
+import random
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -59,7 +60,7 @@ def polling_interface_4000(request):
             "MsgType": "0",
             "SlotNo": str(pendings.slot.slot_number),
             "ProductID": "222",  # sample "222"
-            "TradeNo": "222222",  # sample "3534647568"
+            "TradeNo": random.randint(10000, 100000000),  # sample "3534647568"
             "Err": "success"
         }
         print("TResponse top")
