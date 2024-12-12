@@ -28,16 +28,25 @@ def verify_pickup_code_2000(request):
 
 
 def polling_interface_4000(request):
-    machine_id = request.data.get("mashineId")
-    machine = Machine.objects.get(machine_id=machine_id)
+    machine_id = request.data.get("MachineID")
+    machine = Machine.objects.filter(machine_id=machine_id).first()
+    if not machine:
+       return Response({"Status": "1", "Err": "Invalid Machine ID"}, status=400)
+    
     pendings = TransactionLog.objects.filter(machine=machine, status="Pending").first()
-    if  pendings.exists():
+    if not pendings:
+        return Response({"Status": "1", "Err": "No pending transaction"}, status=400)
+    else:
+        print("Peninggg obtained machine")
+        print(pendings)
+        print("Peninggg obtained machine 22")
         pendings.status = "Processing"
+        pendings.save()
         return Response({
             "Status": "0",
             "MsgType": "0",
             "SlotNo": pendings.slot.slot_number(),
-            "ProductID": pendings.slot.get_product_id(), #sample "222"
+            "ProductID": pendings.slot.get_product_id, #sample "222"
             "TradeNo": pendings.id, ##sample "3534647568"
             "Err": "success"
         })
