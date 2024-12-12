@@ -50,6 +50,9 @@ def polling_interface_4000(request):
         #     "TradeNo": "3232323", 
         #     "Err": "success"
         # })
+        print("Stol number: " + str(pendings.slot.slot_number))
+        print("Product ID: " + pendings.product.product_id)
+        print("Trade number: " + str(pendings.id))  # sample "3534647568"
         return Response({
             "Status": "0",
             "MsgType": "0",
