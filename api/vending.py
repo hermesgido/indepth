@@ -30,16 +30,19 @@ class VendingMashineCallBackAPI(APIView):
 
         fun_code = request.data.get("FunCode")
         if fun_code == "1000":
-            print("Code 1000")
+            pass
+            # print("Code 1000")
             # return handle_restock_1000(request)
         elif fun_code == "2000":
             print("Code 2000")
             # return verify_pickup_code_2000(request)
         elif fun_code == "4000":
-            print("Code 4000 Received")
+            # print("Code 4000 Received")
             return polling_interface_4000(request)
         elif fun_code == "5000":
+            pass
             return delivery_result_feedback_5000(request)
         elif fun_code == "5001":
+            pass
             return restock_result_feedback_5001(request)
         return Response({"Status": "1", "Err": "Invalid FunCode"}, status=400)
