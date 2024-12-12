@@ -139,7 +139,7 @@ class TransactionCreateAPIView(APIView):
         # (TransactionLog.objects.create(transaction=transaction, machine=machine, slot=slot, product_type=product_type, index=i) for i in range(transaction.amount))
         print(transaction.amount)
         
-        for i in range(transaction.amount):
+        for i in range(int(transaction.amount)):
             TransactionLog.objects.create(
                 transaction=transaction,
                 machine=machine,
