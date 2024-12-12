@@ -14,7 +14,7 @@ from .helpers import *
 
 class VendingMashineCallBackAPI(APIView):
     def get(self, request):
-        print(request.data)
+        # print(request.data)
         print("Getting.....")
         return Response({"status": "success", "message": "Machine status updated successfully"})
 

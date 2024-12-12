@@ -37,6 +37,7 @@ def polling_interface_4000(request):
     if not pendings:
         return Response({"Status": "1", "Err": "No pending transaction"}, status=400)
     else:
+        print(request.data)
         print("Peninggg obtained machine")
         print(pendings)
         print("Peninggg obtained machine 22")
@@ -53,14 +54,18 @@ def polling_interface_4000(request):
         print("Stol number: " + str(pendings.slot.slot_number))
         # print("Product ID: " + pendings.product_id)
         # print("Trade number: " + str(pendings.id)) 
-        return Response({
+        response = {
             "Status": "0",
             "MsgType": "0",
             "SlotNo": str(pendings.slot.slot_number),
-            "ProductID": "222", #sample "222"
+            "ProductID": "222",  # sample "222"
             "TradeNo": "222222",  # sample "3534647568"
             "Err": "success"
-        })
+        }
+        print("TResponse top")
+        print(response)
+        print("TResponse bottom")
+        return  Response(response)
     return Response({"Status": "1", "Err": "Invalid MsgType"}, status=400)
 
 
