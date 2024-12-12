@@ -45,7 +45,7 @@ def polling_interface_4000(request):
         return Response({
             "Status": "0",
             "MsgType": "0",
-            "SlotNo": pendings.slot.slot_number(),
+            "SlotNo": pendings.slot.slot_number,
             "ProductID": pendings.slot.get_product_id, #sample "222"
             "TradeNo": pendings.id, ##sample "3534647568"
             "Err": "success"
