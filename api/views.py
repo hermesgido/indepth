@@ -136,16 +136,17 @@ class TransactionCreateAPIView(APIView):
         )
         transaction.save()
         # Save transaction logs
-        (TransactionLog.objects.create(transaction=transaction,machine=machine,slot=slot, product_type=product_type,index=i) for i in transaction.amount)
+        # (TransactionLog.objects.create(transaction=transaction, machine=machine, slot=slot, product_type=product_type, index=i) for i in range(transaction.amount))
+        print(transaction.amount)
         
-        # for i in transaction.amount:
-        #     TransactionLog.objects.create(
-        #         transaction=transaction,
-        #         machine=machine,
-        #         slot=slot,
-        #         product_type=product_type,
-        #         index=i,
-        #     )
+        for i in range(transaction.amount):
+            TransactionLog.objects.create(
+                transaction=transaction,
+                machine=machine,
+                slot=slot,
+                product_type=product_type,
+                index=i,
+            )
         return Response({"status": "success", "data": get_transaction_data(transaction), "message": "Transaction created successfully"})
 
 

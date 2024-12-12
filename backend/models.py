@@ -162,8 +162,9 @@ class TransactionLog(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
     product_type = models.CharField(
-        max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, default="Pending")
-    status = models.CharField(max_length=50, null=True,  blank=True, choices=TRANSCTION_STATUSES)
+        max_length=50, null=True, blank=True, choices=PRODUCT_TYPES)
+    status = models.CharField(max_length=50, null=True,  blank=True,
+                              choices=TRANSCTION_STATUSES, default="Pending")
     status_description = models.CharField(max_length=200, null=True, blank=True)
     feedback_status = models.CharField(max_length=20, null=True, blank=True)
     index = models.PositiveIntegerField(default=0)
