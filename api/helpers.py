@@ -43,8 +43,10 @@ def polling_interface_4000(request):
         print(pendings)
         print("Peninggg obtained machine 22")
         pendings.status = "Processing"
+        trade_number = f"{
+            pendings.product_type}-{pendings.id}-{random.randint(100001, 1000001)}"
+        pendings.trade_number = trade_number
         pendings.save()
-        trade_number = f"{pendings.product_type}-{pendings.id}-{random.randint(100001, 1000001)}"
         response = {
             "Status": "0",
             "MsgType": "0",
