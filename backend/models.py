@@ -174,7 +174,7 @@ class TransactionLog(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.transaction.customer.phone_number if self.transaction.customer.phone_number else self.transaction.customer.pin + self.product_type + "Log"
+        return self.transaction.customer.phone_number if self.transaction.customer.phone_number else self.transaction.customer.pin + self.product_type + "Log" + " " + "Status " + self.status
 
 class Facility(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
