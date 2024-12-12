@@ -215,3 +215,6 @@ class MachineLogs(models.Model):
     function_code = models.CharField(max_length=23, blank=True, null=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.machine.name} - {self.function_code}"
