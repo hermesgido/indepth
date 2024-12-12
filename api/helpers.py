@@ -51,14 +51,14 @@ def polling_interface_4000(request):
         #     "Err": "success"
         # })
         print("Stol number: " + str(pendings.slot.slot_number))
-        print("Product ID: " + pendings.product.product_id)
-        print("Trade number: " + str(pendings.id))  # sample "3534647568"
+        # print("Product ID: " + pendings.product_id)
+        # print("Trade number: " + str(pendings.id)) 
         return Response({
             "Status": "0",
             "MsgType": "0",
             "SlotNo": str(pendings.slot.slot_number),
             "ProductID": "222", #sample "222"
-            "TradeNo": str(pendings.id),  # sample "3534647568"
+            "TradeNo": "222222",  # sample "3534647568"
             "Err": "success"
         })
     return Response({"Status": "1", "Err": "Invalid MsgType"}, status=400)
