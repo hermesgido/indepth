@@ -85,6 +85,7 @@ def delivery_result_feedback_5000(request):
     product_type = data.get('Type')         # Product type
     print("Logiing 5000")
     
+    
     log = TransactionLog.objects.filter(trade_number=trade_no).first()
     if log:
         if (status == "0" or status == "1"):
