@@ -212,4 +212,6 @@ class MachineLogs(models.Model):
     machine = models.ForeignKey(Machine, null=True, blank=True, on_delete=models.CASCADE)
     response  =models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now=True)
+    function_code = models.CharField(max_length=23, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
