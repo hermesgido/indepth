@@ -11,7 +11,7 @@
 
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Facility, Machine, Slot, Customer, Transaction
+from .models import Facility, Machine, Slot, Customer, Transaction, TransactionLog
 
 
 class MachineAdmin(admin.ModelAdmin):
@@ -91,6 +91,7 @@ admin.site.register(Slot, SlotAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(Facility, FacilityAdmin)
+admin.site.register(TransactionLog)
 
 # Customizing Admin Dashboard
 admin.site.site_header = "Transaction Management System"
