@@ -44,23 +44,13 @@ def polling_interface_4000(request):
         print("Peninggg obtained machine 22")
         pendings.status = "Processing"
         pendings.save()
-        # return Response({
-        #     "Status": "0",
-        #     "MsgType": "0",
-        #     "SlotNo": "13",
-        #     "ProductID": "222",  
-        #     "TradeNo": "3232323", 
-        #     "Err": "success"
-        # })
-        print("Stol number: " + str(pendings.slot.slot_number))
-        # print("Product ID: " + pendings.product_id)
-        # print("Trade number: " + str(pendings.id)) 
+        trade_number = f"{pendings.product_type}-{pendings.id}-{random.randint(100001, 1000001)}"
         response = {
             "Status": "0",
             "MsgType": "0",
             "SlotNo": str(pendings.slot.slot_number),
-            "ProductID": "222",  # sample "222"
-            "TradeNo": random.randint(10000, 100000000),  # sample "3534647568"
+            "ProductID": "222", 
+            "TradeNo": trade_number,  
             "Err": "success"
         }
         print("TResponse top")
@@ -93,8 +83,9 @@ def delivery_result_feedback_5000(request):
     product_id = data.get('ProductID')      # Product ID
     name = data.get('Name')                 # Product name
     product_type = data.get('Type')         # Product type
+    print("Logiing 5000")
     
-    log =TransactionLog.objects.filter(id=trade_no).first()
+    log = TransactionLog.objects.filter(trade_number=trade_no).first()
     if log:
         if (status == "0" or status == "1"):
             log.status = "Completed"

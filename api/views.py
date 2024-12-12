@@ -72,7 +72,7 @@ class CustomerCreateAPIView(APIView):
             gender=gender,
             registered_machine=machine
         )
-        customer.save()
+        customer.save() 
         return Response({"status": "success", "data": get_customer_data(customer), "message": "Customer created successfully"})
 
 

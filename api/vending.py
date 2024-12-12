@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from backend.models import Customer, Facility, Machine, Slot, Transaction
+from backend.models import Customer, Facility, Machine, MachineLogs, Slot, Transaction
 from django.db.models import Q
 
 from .helpers import *
@@ -27,7 +27,8 @@ class VendingMashineCallBackAPI(APIView):
         else:
             return Response({"status": "Unsupported content type"}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
         # print("Received Data Is: {0}".format(request.data))
-
+        MachineID = request.data.get("MachineID")
+        MachineLogs.objects.create(machine=MachineID, response=request.data).save()
         fun_code = request.data.get("FunCode")
         if fun_code == "1000":
             pass
@@ -40,7 +41,7 @@ class VendingMashineCallBackAPI(APIView):
             # print("Code 4000 Received")
             return polling_interface_4000(request)
         elif fun_code == "5000":
-            pass
+            # pass
             return delivery_result_feedback_5000(request)
         elif fun_code == "5001":
             pass

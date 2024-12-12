@@ -149,6 +149,7 @@ class Transaction(models.Model):
         max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, default="Pending")
     status = models.CharField(max_length=50, null=True,
                               blank=True, choices=TRANSCTION_STATUSES)
+    
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
@@ -167,6 +168,7 @@ class TransactionLog(models.Model):
                               choices=TRANSCTION_STATUSES, default="Pending")
     status_description = models.CharField(max_length=200, null=True, blank=True)
     feedback_status = models.CharField(max_length=20, null=True, blank=True)
+    trade_number = models.CharField(max_length=200, null=True, blank=True)
     index = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -204,3 +206,10 @@ class Facility(models.Model):
 
     def __str__(self):
         return f"{self.district} - {self.ward}"
+
+
+class MachineLogs(models.Model):
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
+    response  =models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
