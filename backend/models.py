@@ -147,15 +147,16 @@ class Transaction(models.Model):
     dispensed_successful_amount = models.IntegerField(default=0)
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE, null=True, blank=True)
     product_type = models.CharField(
-        max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, default="Pending")
+        max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, )
     status = models.CharField(max_length=50, null=True,
-                              blank=True, choices=TRANSCTION_STATUSES)
+                              blank=True, choices=TRANSCTION_STATUSES, default="Pending")
     
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
     @property
     def dispensed_products_count(self):
+        
         status = Q(status="0") | Q(status="2")
         return TransactionLog.objects.filter(transaction=self).filter(status).count()
     
