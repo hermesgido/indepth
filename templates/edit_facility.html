@@ -1,0 +1,66 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Facilities List</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+
+                  
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+                
+             
+<div class="container">
+  <h2>Edit Facility</h2>
+  <form method="post" action="{% url 'edit_facility' facility.id %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="district" class="form-label">District</label>
+      {{ form.district }}
+    </div>
+    <div class="mb-3">
+      <label for="ward" class="form-label">Ward</label>
+      {{ form.ward }}
+    </div>
+    <div class="mb-3">
+      <label for="hfrcode" class="form-label">HFR Code</label>
+      {{ form.hfrcode }}
+    </div>
+    <div class="mb-3">
+      <label for="supporting_facility" class="form-label">Supporting Facility</label>
+      {{ form.supporting_facility }}
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{% url 'facilities' %}" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

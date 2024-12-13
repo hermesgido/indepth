@@ -16,391 +16,63 @@
                 <div class="col-auto">
                   <form class="row g-2">
                     <div class="col-auto">
-                      <a
-                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="false"
-                        aria-expanded="false"
-                        data-bs-auto-close="outside"
-                      >
-                        <i class="iconoir-filter-alt me-1"></i> Filter
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-start">
-                        <div class="p-2">
-                          <div class="form-check mb-2">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-all"
-                            />
-                            <label class="form-check-label" for="filter-all">
-                              All
-                            </label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-one"
-                            />
-                            <label class="form-check-label" for="filter-one">
-                              New
-                            </label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-two"
-                            />
-                            <label class="form-check-label" for="filter-two">
-                              VIP
-                            </label>
-                          </div>
-
-                          <div class="form-check">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-six"
-                            />
-                            <label class="form-check-label" for="filter-six">
-                              Loyal
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-auto">
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addBoard"
-                      >
+                      <button type="button" class="btn btn-primary">
                         <i class="fa-solid fa-plus me-1"></i> Add Customer
                       </button>
                     </div>
-                    <!--end col-->
                   </form>
                 </div>
                 <!--end col-->
               </div>
               <!--end row-->
             </div>
+            {% include "snippets/cutomer_filters.html" %}
             <!--end card-header-->
             <div class="card-body pt-0">
               <div class="table-responsive">
-               
-               
-               
-                <table class="table mb-0 checkbox-all" id="datatable_1">
-    <thead class="table-light">
-        <tr>
-            <th style="width: 16px;">
-                <div class="form-check mb-0 ms-n1">
-                    <input type="checkbox" class="form-check-input" name="select-all" id="select-all">
-                </div>
-            </th>
-            <th class="ps-0">Pin</th>
-            <th>Pin Type</th>
-            <th>Phone</th>
-            <th>Days</th>
-            <th>Expired Date</th>
-            <th>Gender</th>
-            <th>Qnt Per Day</th>
-            <th>Qnt Per Month</th>
-            <th>Age</th>
-            <th>Age Group</th>
-            <th>Status</th>
-            <th class="text-end">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="check1">
-                </div>
-            </td>
-            <td>58286907</td>
-            <td>PERMANENT</td>
-            <td>+255 711 234567</td>
-            <td>30</td>
-            <td>2024-12-31</td>
-            <td>MALE</td>
-            <td>3</td>
-            <td>0</td>
-            <td>30</td>
-            <td>30 - 34</td>
-            <td>Active</td>
-            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="check2">
-                </div>
-            </td>
-            <td>63355907</td>
-            <td>PERMANENT</td>
-            <td>+255 712 345678</td>
-            <td>30</td>
-            <td>2024-12-31</td>
-            <td>MALE</td>
-            <td>3</td>
-            <td>0</td>
-            <td>30</td>
-            <td>30 - 34</td>
-            <td>Active</td>
-            <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-        </tr>
-
-        <tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check3">
-        </div>
-    </td>
-    <td>74261345</td>
-    <td>TEMPORARY</td>
-    <td>+255 713 456789</td>
-    <td>15</td>
-    <td>2024-10-15</td>
-    <td>FEMALE</td>
-    <td>2</td>
-    <td>0</td>
-    <td>25</td>
-    <td>20 - 24</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check4">
-        </div>
-    </td>
-    <td>85973012</td>
-    <td>PERMANENT</td>
-    <td>+255 714 567890</td>
-    <td>45</td>
-    <td>2024-11-20</td>
-    <td>MALE</td>
-    <td>4</td>
-    <td>0</td>
-    <td>50</td>
-    <td>45 - 49</td>
-    <td>Expired</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check5">
-        </div>
-    </td>
-    <td>92187465</td>
-    <td>TEMPORARY</td>
-    <td>+255 715 678901</td>
-    <td>30</td>
-    <td>2024-12-05</td>
-    <td>FEMALE</td>
-    <td>1</td>
-    <td>0</td>
-    <td>29</td>
-    <td>25 - 29</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check6">
-        </div>
-    </td>
-    <td>63452789</td>
-    <td>PERMANENT</td>
-    <td>+255 716 789012</td>
-    <td>60</td>
-    <td>2025-01-10</td>
-    <td>MALE</td>
-    <td>5</td>
-    <td>0</td>
-    <td>60</td>
-    <td>60 - 64</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check7">
-        </div>
-    </td>
-    <td>54728901</td>
-    <td>TEMPORARY</td>
-    <td>+255 717 890123</td>
-    <td>10</td>
-    <td>2024-09-25</td>
-    <td>FEMALE</td>
-    <td>3</td>
-    <td>0</td>
-    <td>32</td>
-    <td>30 - 34</td>
-    <td>Expired</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check8">
-        </div>
-    </td>
-    <td>45321678</td>
-    <td>PERMANENT</td>
-    <td>+255 718 901234</td>
-    <td>90</td>
-    <td>2024-11-30</td>
-    <td>MALE</td>
-    <td>2</td>
-    <td>0</td>
-    <td>45</td>
-    <td>40 - 44</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check9">
-        </div>
-    </td>
-    <td>67890345</td>
-    <td>TEMPORARY</td>
-    <td>+255 719 012345</td>
-    <td>25</td>
-    <td>2024-10-01</td>
-    <td>FEMALE</td>
-    <td>4</td>
-    <td>0</td>
-    <td>22</td>
-    <td>20 - 24</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check10">
-        </div>
-    </td>
-    <td>23456789</td>
-    <td>PERMANENT</td>
-    <td>+255 720 123456</td>
-    <td>40</td>
-    <td>2024-12-20</td>
-    <td>MALE</td>
-    <td>3</td>
-    <td>0</td>
-    <td>50</td>
-    <td>45 - 49</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check11">
-        </div>
-    </td>
-    <td>34567890</td>
-    <td>TEMPORARY</td>
-    <td>+255 721 234567</td>
-    <td>20</td>
-    <td>2024-11-15</td>
-    <td>FEMALE</td>
-    <td>2</td>
-    <td>0</td>
-    <td>27</td>
-    <td>25 - 29</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check12">
-        </div>
-    </td>
-    <td>45678901</td>
-    <td>PERMANENT</td>
-    <td>+255 722 345678</td>
-    <td>35</td>
-    <td>2024-12-25</td>
-    <td>MALE</td>
-    <td>1</td>
-    <td>0</td>
-    <td>38</td>
-    <td>35 - 39</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check13">
-        </div>
-    </td>
-    <td>56789012</td>
-    <td>TEMPORARY</td>
-    <td>+255 723 456789</td>
-    <td>50</td>
-    <td>2024-10-30</td>
-    <td>FEMALE</td>
-    <td>5</td>
-    <td>0</td>
-    <td>55</td>
-    <td>50 - 54</td>
-    <td>Expired</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-<tr>
-    <td style="width: 16px;">
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="check" id="check14">
-        </div>
-    </td>
-    <td>67890123</td>
-    <td>PERMANENT</td>
-    <td>+255 724 567890</td>
-    <td>60</td>
-    <td>2025-01-15</td>
-    <td>MALE</td>
-    <td>2</td>
-    <td>0</td>
-    <td>62</td>
-    <td>60 - 64</td>
-    <td>Active</td>
-    <td class="text-end"><button class="btn btn-primary">Edit</button></td>
-</tr>
-
-        
-        <!-- Add more rows as needed -->
-    </tbody>
-</table>
-
-
-
-
+                <table class="table mb-0 checkbox-all">
+                  <thead class="table-light">
+                    <tr>
+                      <th>#</th>
+                      <th>PIN</th>
+                      <th>Phone Number</th>
+                      <th>Age</th>
+                      <th>Gender</th>
+                      <th>Location</th>
+                      <th>Type</th>
+                      <th>Client Group</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ customer.pin|default:"N/A" }}</td>
+                      <td>{{ customer.phone_number|default:"N/A" }}</td>
+                      <td>{{ customer.age|default:"N/A" }}</td>
+                      <td>{{ customer.gender|default:"N/A" }}</td>
+                      <td>{{ customer.location|default:"N/A" }}</td>
+                      <td>{{ customer.type|default:"N/A" }}</td>
+                      <td>{{ customer.client_group|default:"N/A" }}</td>
+                      <td class="text-end">
+                        <a href="#"
+                          ><i class="las la-pen text-secondary fs-18"></i
+                        ></a>
+                        <a href="#"
+                          ><i class="las la-trash-alt text-secondary fs-18"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="9" class="text-center">
+                        No customers available
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -410,8 +82,6 @@
       <!-- end row -->
     </div>
     <!-- container -->
-
-    <!--end footer-->
   </div>
   <!-- end page content -->
 </div>

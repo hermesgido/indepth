@@ -1,0 +1,134 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Facilities List</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <a
+                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        <i class="iconoir-filter-alt me-1"></i> Filter
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-start">
+                        <div class="p-2">
+                          <div class="form-check mb-2">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              checked
+                              id="filter-all"
+                            />
+                            <label class="form-check-label" for="filter-all">
+                              All
+                            </label>
+                          </div>
+                          <!-- Additional filters -->
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-auto">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addFacility"
+                      >
+                        <i class="fa-solid fa-plus me-1"></i> Add Facility
+                      </button>
+                    </div>
+                    <!--end col-->
+                  </form>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>District</th>
+                      <th>Ward</th>
+                      <th>HFR Code</th>
+                      <th>Supporting Facility</th>
+                      <th>Responsible Person</th>
+                      <th>Mobile Number</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for facility in facilities %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ facility.district }}</td>
+                      <td>{{ facility.ward }}</td>
+                      <td>{{ facility.hfrcode }}</td>
+                      <td>{{ facility.supporting_facility }}</td>
+                      <td>{{ facility.responsible_person }}</td>
+                      <td>{{ facility.mobile_no }}</td>
+                      <td>{{ facility.status }}</td>
+                      <td>
+                        <a
+                          href="{% url 'edit_facility' facility.id %}"
+                          class="btn btn-primary btn-sm"
+                          >Edit</a
+                        >
+                        <form
+                          action=""
+                          method="post"
+                          style="display: inline"
+                        >
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-danger btn-sm">
+                            Delete
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="9" class="text-center">
+                        No facilities found.
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

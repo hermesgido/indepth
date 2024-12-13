@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 # Create your models here.
 
@@ -152,6 +153,11 @@ class Transaction(models.Model):
     
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    
+    @property
+    def dispensed_products_count(self):
+        status = Q(status="0") | Q(status="2")
+        return TransactionLog.objects.filter(transaction=self).filter(status).count()
     
     def __str__(self):
         

@@ -1,410 +1,90 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
 
-  {% extends 'snippets/base.html' %}
-
-  {% load static %}
-  {% block content %}
-        
-
-        <div class="page-wrapper">
-
-            <!-- Page Content-->
-            <div class="page-content">
-                <div class="container-xxl"> 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col">                      
-                                            <h4 class="card-title">Customers</h4>                      
-                                        </div><!--end col-->
-                                        <div class="col-auto"> 
-                                            <form class="row g-2">
-                                                <div class="col-auto">
-                                                    <a class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" data-bs-auto-close="outside">
-                                                        <i class="iconoir-filter-alt me-1"></i> Filter
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-start">
-                                                        <div class="p-2">
-                                                            <div class="form-check mb-2">
-                                                                <input type="checkbox" class="form-check-input" checked id="filter-all">
-                                                                <label class="form-check-label" for="filter-all">
-                                                                  All 
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-2">
-                                                                <input type="checkbox" class="form-check-input" checked id="filter-one">
-                                                                <label class="form-check-label" for="filter-one">
-                                                                    New
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-2">
-                                                                <input type="checkbox" class="form-check-input" checked id="filter-two">
-                                                                <label class="form-check-label" for="filter-two">
-                                                                    VIP
-                                                                </label>
-                                                            </div>
-                                                          
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" checked id="filter-six">
-                                                                <label class="form-check-label" for="filter-six">
-                                                                    Loyal
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                                
-                                                <div class="col-auto">
-                                                  <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addBoard"><i class="fa-solid fa-plus me-1"></i> Add Customer</button>
-                                                </div><!--end col-->
-                                            </form>    
-                                        </div><!--end col-->
-                                    </div><!--end row-->                                  
-                                </div><!--end card-header-->
-                                <div class="card-body pt-0">
-                                    
-                                    <div class="table-responsive">
-                                    
-                                    <table class="table mb-0 checkbox-all" id="datatable_1">
-    <thead class="table-light">
-        <tr>
-            <th style="width: 16px;">
-                <div class="form-check mb-0 ms-n1">
-                    <input type="checkbox" class="form-check-input" name="select-all" id="select-all">
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Customers</h4>
                 </div>
-            </th>
-            <th class="ps-0">Customer</th>
-            <th>Phone Number</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Products</th>
-            <th class="text-end">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                <!--end col-->
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <button type="button" class="btn btn-primary">
+                        <i class="fa-solid fa-plus me-1"></i> Add Customer
+                      </button>
+                    </div>
+                  </form>
                 </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">John Mushi</span>
-                </p>
-            </td>
-            <td>+255 715 123456</td>
-            <td>28</td>
-            <td>Male</td>
-            <td>34</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck2">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Amina Hassan</span>
-                </p>
-            </td>
-            <td>+255 787 654321</td>
-            <td>35</td>
-            <td>Female</td>
-            <td>422</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck3">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Peter Mbaga</span>
-                </p>
-            </td>
-            <td>+255 756 234567</td>
-            <td>42</td>
-            <td>Male</td>
-            <td>22</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck4">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Zainab Juma</span>
-                </p>
-            </td>
-            <td>+255 789 345678</td>
-            <td>29</td>
-            <td>Female</td>
-            <td>89</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck5">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Michael Ngowi</span>
-                </p>
-            </td>
-            <td>+255 713 987654</td>
-            <td>37</td>
-            <td>Male</td>
-            <td>56</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">John Mushi</span>
-                </p>
-            </td>
-            <td>+255 715 123456</td>
-            <td>28</td>
-            <td>Male</td>
-            <td>50</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck2">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Amina Hassan</span>
-                </p>
-            </td>
-            <td>+255 787 654321</td>
-            <td>35</td>
-            <td>Female</td>
-            <td>45</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck3">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Peter Mbaga</span>
-                </p>
-            </td>
-            <td>+255 756 234567</td>
-            <td>42</td>
-            <td>Male</td>
-            <td>60</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck4">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Zainab Juma</span>
-                </p>
-            </td>
-            <td>+255 789 345678</td>
-            <td>29</td>
-            <td>Female</td>
-            <td>80</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck5">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Michael Ngowi</span>
-                </p>
-            </td>
-            <td>+255 713 987654</td>
-            <td>37</td>
-            <td>Male</td>
-            <td>35</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck6">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Fatma Suleiman</span>
-                </p>
-            </td>
-            <td>+255 719 654321</td>
-            <td>30</td>
-            <td>Female</td>
-            <td>70</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck7">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Ismail Ally</span>
-                </p>
-            </td>
-            <td>+255 718 987123</td>
-            <td>25</td>
-            <td>Male</td>
-            <td>40</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck8">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Anna Mkapa</span>
-                </p>
-            </td>
-            <td>+255 783 456789</td>
-            <td>33</td>
-            <td>Female</td>
-            <td>90</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck9">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Salim Mwinyi</span>
-                </p>
-            </td>
-            <td>+255 786 321456</td>
-            <td>38</td>
-            <td>Male</td>
-            <td>55</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="customCheck10">
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Mariam Abdallah</span>
-                </p>
-            </td>
-            <td>+255 712 789654</td>
-            <td>27</td>
-            <td>Female</td>
-            <td>85</td>
-            <td class="text-end">
-                <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
-                <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-            </td>
-        </tr>
-    
-    </tbody>
-</table>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
-                    </div> <!-- end row -->                                     
-                </div><!-- container -->
-                
-            
-                
-                <!--end footer-->
+                <!--end col-->
+              </div>
+              <!--end row-->
             </div>
-            <!-- end page content -->
-        </div>
-      
+            {% include "snippets/cutomer_filters.html" %}
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table mb-0 checkbox-all">
+                  <thead class="table-light">
+                    <tr>
+                      <th>#</th>
+                      <th>Phone Number</th>
+                      <th>PIN</th>
+                      <th>Age</th>
+                      <th>Gender</th>
+                      <th>Location</th>
+                      <th>Type</th>
+                      <th>Client Group</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ customer.phone_number|default:"N/A" }}</td>
+                      <td>{{ customer.name|default:"N/A" }}</td>
 
-      {% endblock %}
-      
-      
+                      <td>{{ customer.age|default:"N/A" }}</td>
+                      <td>{{ customer.gender|default:"N/A" }}</td>
+                      <td>{{ customer.location|default:"N/A" }}</td>
+                      <td>{{ customer.type|default:"N/A" }}</td>
+                      <td>{{ customer.client_group|default:"N/A" }}</td>
+                      <td class="text-end">
+                        <a href="#"
+                          ><i class="las la-pen text-secondary fs-18"></i
+                        ></a>
+                        <a href="#"
+                          ><i class="las la-trash-alt text-secondary fs-18"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="9" class="text-center">
+                        No customers available
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

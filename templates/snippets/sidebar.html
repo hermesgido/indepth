@@ -148,7 +148,7 @@
                   </li>
                   <!--end nav-item-->
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'kvp_customers' %}">KVP Customers</a>
+                    <a class="nav-link" href="{% url 'kvp_customers' %}?type=Client+Group">KVP Customers</a>
                   </li>
                   <!--end nav-item-->
                   
@@ -182,6 +182,13 @@
                       >All</a
                     >
                   </li>
+
+                   <li class="nav-item">
+                    <a class="nav-link" href="{% url 'facilities' %}"
+                      >Facilities</a
+                    >
+                  </li>
+
                   <!--end nav-item-->
                 </ul>
                 <!--end nav-->
@@ -204,7 +211,10 @@
               <div class="collapse" id="sidebarCharts">
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a class="nav-link" href="Reports">All</a>
+                    <a class="nav-link" href="{% url 'transactions' %}">Transactions</a>
+                  </li>
+                     <li class="nav-item">
+                    <a class="nav-link" href="Reports">Transaction Logs</a>
                   </li>
                 </ul>
                 <!--end nav-->

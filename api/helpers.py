@@ -90,7 +90,7 @@ def delivery_result_feedback_5000(request):
     
     log = TransactionLog.objects.filter(trade_number=trade_no).first()
     if log:
-        if (status == "0" or status == "1"):
+        if (status == "0" or status == "2"):
             log.status = "Completed"
             log.status_description = STATUS_DESCRIPTIONS.get(
                 int(status), "Unknown status")
