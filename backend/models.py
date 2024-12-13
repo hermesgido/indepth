@@ -156,9 +156,16 @@ class Transaction(models.Model):
     
     @property
     def dispensed_products_count(self):
-        
         status = Q(feedback_status="0") | Q(feedback_status="2")
         return TransactionLog.objects.filter(transaction=self).filter(status).count()
+    @property
+    def get_status(self):
+        if self.amount == self.dispensed_products_count:
+            return "Succefully"
+        elif self.amount > self.dispensed_products_count:
+            return "Partially"
+        else:
+            return "Pending"
     
     def __str__(self):
         

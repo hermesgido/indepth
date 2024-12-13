@@ -1,6 +1,4 @@
-{% extends 'snippets/base.html' %} 
-{% load static %} 
-{% block content %}
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
 
 <div class="page-wrapper">
   <!-- Page Content-->
@@ -38,11 +36,17 @@
                     {% for transaction in transactions %}
                     <tr>
                       <td>{{ forloop.counter }}</td>
-                      <td>{{ transaction.customer.phone_number }}</td> <!-- Assuming customer has phone_number -->
+                      <td>{{ transaction.customer.phone_number }}</td>
+                      <!-- Assuming customer has phone_number -->
                       <td>{{ transaction.machine }}</td>
                       <td>{{ transaction.amount }}</td>
                       <td>{{ transaction.dispensed_products_count }}</td>
-                      <td>{{ transaction.status }}</td>
+                      <td>
+                        {% if transaction.get_status = "Successful" %} {{
+                        transaction.get_status }} {% elif transaction.get_status
+                        == "Partially" %} {{ transaction.get_status %}} {% else
+                        %} {{ transaction.get_status }} {% endif %} {% endif %}
+                      </td>
                       <td>{{ transaction.created_at }}</td>
                       <td>
                         <a href="" class="btn btn-primary btn-sm">Logs</a>
@@ -50,7 +54,9 @@
                     </tr>
                     {% empty %}
                     <tr>
-                      <td colspan="8" class="text-center">No transactions found.</td>
+                      <td colspan="8" class="text-center">
+                        No transactions found.
+                      </td>
                     </tr>
                     {% endfor %}
                   </tbody>
