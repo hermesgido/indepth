@@ -162,7 +162,7 @@ class Transaction(models.Model):
     def get_status(self):
         if self.amount == self.dispensed_products_count:
             return "Succefully"
-        elif self.amount > self.dispensed_products_count:
+        elif self.amount > self.dispensed_products_count and self.dispensed_products_count !=0:
             return "Partially"
         else:
             return "Pending"
