@@ -42,10 +42,20 @@
                       <td>{{ transaction.amount }}</td>
                       <td>{{ transaction.dispensed_products_count }}</td>
                       <td>
-                        {% if transaction.get_status = "Successful" %} {{
-                        transaction.get_status }} {% elif transaction.get_status
-                        == "Partially" %} {{ transaction.get_status %}} {% else
-                        %} {{ transaction.get_status }} {% endif %} {% endif %}
+                        {% if transaction.get_status = "Successful" %}
+                        <span class="badge bg-primary-subtle text-primary px-2">
+                          {{transaction.get_status }}
+                        </span>
+                        {% elif transaction.get_status == "Partially" %}
+                        <span class="badge bg-primary-subtle text-danger px-2">
+                          {{transaction.get_status }}
+                        </span>
+                        {% else %}
+
+                        <span class="badge bg-primary-subtle text-danger px-2">
+                          {{transaction.get_status }}
+                        </span>
+                        {% endif %} {% endif %}
                       </td>
                       <td>{{ transaction.created_at }}</td>
                       <td>
