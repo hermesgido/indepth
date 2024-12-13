@@ -157,7 +157,7 @@ class Transaction(models.Model):
     @property
     def dispensed_products_count(self):
         
-        status = Q(status="0") | Q(status="2")
+        status = Q(feedback_status="0") | Q(feedback_status="2")
         return TransactionLog.objects.filter(transaction=self).filter(status).count()
     
     def __str__(self):
