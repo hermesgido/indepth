@@ -30,6 +30,9 @@ urlpatterns = [
     path('mashines/', views.mashines, name="mashines"),
     path('products/', views.products, name="products"),
     
-    path('transactions', views.transactions, name="transactions"),
+    path('transactions/', views.transactions, name="transactions"),
+    path('transactions_logs/', views.transactions_logs, name="transactions_logs"),
+    path('transactions_logs/<str:id>/',
+         views.transactions_logs, name="transactions_logs")
 
 ]

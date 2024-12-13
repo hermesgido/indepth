@@ -1,0 +1,77 @@
+{% extends 'snippets/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Transaction Logs</h4>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Customer</th>
+                      <th>Machine</th>
+                      <th>Product Type</th>
+                      <th>Status</th>
+                      <th>Description</th>
+                      <th>Created At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for log in transaction_logs %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ log.transaction.customer.phone_number }}</td> 
+                      <td>{{ log.machine }}</td>
+                      <td>{{ log.product_type }}</td>
+                      <td>
+                        {% if log.status == "Completed" %}
+                        <span class="badge bg-primary-subtle text-primary px-2">{{ log.status }}</span>
+                        {% elif log.status == "Processing" %}
+                        <span class="badge bg-warning-subtle text-warning px-2">{{ log.status }}</span>
+                        {% else %}
+                        <span class="badge bg-danger-subtle text-danger px-2">{{ log.status }}</span>
+                        {% endif %}
+                      </td>
+                      <td>{{ log.status_description }}</td>
+                      <td>{{ log.created_at }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="7" class="text-center">
+                        No transaction logs found.
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

@@ -59,7 +59,7 @@
                       </td>
                       <td>{{ transaction.created_at }}</td>
                       <td>
-                        <a href="" class="btn btn-primary btn-sm">Logs</a>
+                        <a href="{% url 'transactions_logs'  transaction.id %}" class="btn btn-primary btn-sm">Logs</a>
                       </td>
                     </tr>
                     {% empty %}

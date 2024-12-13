@@ -1,6 +1,6 @@
 from backend.filters import CustomerFilter
 from .forms import FacilityForm  
-from .models import Customer, Facility, Transaction
+from .models import Customer, Facility, Transaction, TransactionLog
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -65,6 +65,18 @@ def transactions(request):
     
     context = {"transactions": transaction_list}
     return render(request, 'transactions.html', context)
+
+
+def transactions_logs(request, id=None):
+    if id is not None:
+        txn  = Transaction.objects.get(id=id)
+        transaction_logs_list = TransactionLog.objects.filter(transaction=txn)
+    else:
+        transaction_logs_list = TransactionLog.objects.all()
+    
+    
+    context = {"transaction_logs": transaction_logs_list}
+    return render(request, 'transactions_logs.html', context)
 
 def kvp_customers(request):
     customer_filter = CustomerFilter(
