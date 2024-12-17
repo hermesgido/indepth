@@ -16,4 +16,5 @@ urlpatterns = [
          MachineSlotsAPIView.as_view(), name='machine-slots'),
 
     path('machine-login/', SetMachineIdAndPassword.as_view(), name="machine-login"),
+    path('admin-login/', AdminLogin.as_view(), name="admin-login"),
 ]
