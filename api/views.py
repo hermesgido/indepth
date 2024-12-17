@@ -240,7 +240,7 @@ class AdminLogin(APIView):
         phone_number = request.POST.get('phone_number')
         password = request.POST.get('password')
         try:
-            admin  = Facility.objects.filter(phone_number=phone_number, app_password=password)
+            admin  = Facility.objects.filter(mobile_no=phone_number, app_password=password)
             if not admin.exists():
                 return Response({'status': 'error','message': 'Invalid credentials'})
             return Response({'status':'success','message': 'Login successful'})
