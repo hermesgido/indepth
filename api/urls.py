@@ -1,6 +1,6 @@
 
 from django.urls import path
-from api.views import AdminLogin, CustomerAPIView, CustomerCreateAPIView, HelloWorldView, MachineSlotsAPIView, SetMachineIdAndPassword, TransactionCreateAPIView, VendingMashineCallBackAPI
+from api.views import AdminLogin, CheckAppUpdateView, CustomerAPIView, CustomerCreateAPIView, HelloWorldView, MachineSlotsAPIView, SetMachineIdAndPassword, TransactionCreateAPIView, VendingMashineCallBackAPI
 from backend import views
 
 urlpatterns = [
@@ -17,4 +17,6 @@ urlpatterns = [
 
     path('machine-login/', SetMachineIdAndPassword.as_view(), name="machine-login"),
     path('admin-login/', AdminLogin.as_view(), name="admin-login"),
+    path('check-app-update/', CheckAppUpdateView.as_view(), name='check-app-update'),
+
 ]

@@ -269,3 +269,12 @@ class MachineLogs(models.Model):
     
     def __str__(self):
         return f"{self.machine.name} - {self.function_code}"
+    
+
+class AppUpdate(models.Model):
+    version = models.CharField(max_length=50)
+    apk_file = models.FileField(upload_to="apk_files", null=True, blank=True)
+    download_url = models.URLField(null=True, blank=True) 
+
+    def __str__(self):
+        return f"App Update v{self.version}"

@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .vending import VendingMashineCallBackAPI
-from backend.models import Customer, Facility, Machine, Slot, Transaction, TransactionLog
+from backend.models import AppUpdate, Customer, Facility, Machine, Slot, Transaction, TransactionLog
 from django.db.models import Q
 
 class HelloWorldView(APIView):
@@ -248,3 +248,20 @@ class AdminLogin(APIView):
         except Exception as e:
             return Response({'status': 'error','message': str(e)})
     
+
+class CheckAppUpdateView(APIView):
+    def get(self, request, *args, **kwargs):
+        current_version = request.query_params.get('current_version', '')
+        latest_update = AppUpdate.objects.latest(
+            'id')  
+
+        if current_version != latest_update.version:
+            return Response({
+                'update_available': True,
+                'latest_version': latest_update.version,
+                'apk_file': latest_update.apk_file,
+                'download_url': latest_update.download_url,
+            })
+        return Response({
+            'update_available': False,
+        })

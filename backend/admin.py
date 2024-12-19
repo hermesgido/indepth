@@ -61,8 +61,7 @@ class CustomerAdmin(admin.ModelAdmin):
     search_fields = ('name', 'location', 'phone_number',
                      'registered_machine__name')
     list_filter = ('type', 'client_group', 'gender')
-    readonly_fields = ('created_at', 'updated_at', 'condom_transaction_limit',
-                       'kits_transaction_limit', 'today_condom_transactions', 'today_kits_transactions')
+   
 
     def registered_machine_name(self, obj):
         return obj.registered_machine.name if obj.registered_machine else None
