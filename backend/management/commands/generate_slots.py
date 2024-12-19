@@ -2,6 +2,7 @@ import os
 from django.core.files.storage import FileSystemStorage
 from django.core.management.base import BaseCommand
 from backend.models import Machine, Slot
+from django.conf import settings
 
 
 class Command(BaseCommand):
@@ -56,7 +57,7 @@ class Command(BaseCommand):
 
         # Iterate through all machines
         for machine in machines:
-            self.stdout.write(f"Processing machine: {machine.name} (ID: {machine.machine_id})")
+            self.stdout.write(f"Processing machine: { machine.name} (ID: {machine.machine_id})")
 
             # Iterate through slot data to create slots
             for key, data in slot_data.items():
@@ -71,9 +72,9 @@ class Command(BaseCommand):
                             f"Image file {data['image_filename']} does not exist. Skipping."))
                         continue
 
-                    # Remove '/media' from the URL if present
-                    image_url = fs.url(image_path).replace('/media', '')
+                    image_url = image_path
 
+                    # Create the slot with the image URL (relative path)
                     _, created = Slot.objects.get_or_create(
                         slot_number=slot_number,
                         machine=machine,
@@ -84,13 +85,13 @@ class Command(BaseCommand):
                             'capacity': 11,
                             'quantity_available': data['quantity'],
                             'price': data['price'],
-                            'product_image': image_url  
+                            'product_image': image_url  # Corrected to store the relative path
                         },
                     )
 
                     # Log the creation success
                     if created:
-                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({  data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
+                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
 
         self.stdout.write(self.style.SUCCESS(
             "Slot generation completed for all machines."))
