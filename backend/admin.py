@@ -85,13 +85,34 @@ class TransactionAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
 
+class TransactionLogAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'transaction',
+        'machine',
+        'slot',
+        'product_type',
+        'status',
+        'created_at',
+        'updated_at'
+    )
+    list_filter = ('product_type', 'status', 'created_at')  # Filters for admin
+    search_fields = ('transaction__customer__phone_number',
+                     'trade_number', 'status')  # Enable search
+    ordering = ('-created_at',)  # Order by newest logs
+
+    # Optionally, define read-only fields for created/updated timestamps
+    readonly_fields = ('created_at', 'updated_at')
+
+
+
 # Registering models to the admin
 admin.site.register(Machine, MachineAdmin)
 admin.site.register(Slot, SlotAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(Facility, FacilityAdmin)
-admin.site.register(TransactionLog)
+admin.site.register(TransactionLog, TransactionLogAdmin)
 admin.site.register(MachineLogs)
 
 
