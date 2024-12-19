@@ -147,7 +147,7 @@ class Customer(models.Model):
 
         return transactions.count()
     @property
-    def today_kits_transaction_logs(self):
+    def today_kits_transactions(self):
         today = datetime.date.today()
         transactions = Transaction.objects.filter(customer=self,product_type="Kits",created_at__date=today)
         transaction_logs_count = TransactionLog.objects.filter(transaction__in=transactions).count()
