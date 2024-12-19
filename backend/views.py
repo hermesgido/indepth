@@ -19,9 +19,19 @@ from backend.models import Facility
 
 @login_required
 def index(request):
+    customers = Customer.objects.all().count()
+    transactions = Transaction.objects.all().count()
+    machines = Machine.objects.all().count()
+    
+    context = {
+        'customers': customers,
+        'transactions': transactions,
+        'machines': machines,
+    }
     
     
-    return render(request, 'index.html')
+    
+    return render(request, 'index.html', context)
 
 
 def logout_user(request):

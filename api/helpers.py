@@ -32,9 +32,10 @@ def polling_interface_4000(request):
     machine_id = request.data.get("MachineID")
     machine = Machine.objects.filter(machine_id=machine_id).first()
     if not machine:
-       return Response({"Status": "1", "Err": "Invalid Machine ID"}, status=400)
-    
-    pendings = TransactionLog.objects.filter(machine=machine, status="Pending").first()
+        return Response({"Status": "1", "Err": "Invalid Machine ID"}, status=400)
+
+    pendings = TransactionLog.objects.filter(
+        machine=machine, status="Pending").first()
     if not pendings:
         return Response({"Status": "1", "Err": "No pending transaction"}, status=400)
     else:
@@ -51,14 +52,14 @@ def polling_interface_4000(request):
             "Status": "0",
             "MsgType": "0",
             "SlotNo": str(pendings.slot.slot_number),
-            "ProductID": "222", 
-            "TradeNo": trade_number,  
+            "ProductID": "222",
+            "TradeNo": trade_number,
             "Err": "success"
         }
         print("TResponse top")
         print(response)
         print("TResponse bottom")
-        return  Response(response)
+        return Response(response)
     return Response({"Status": "1", "Err": "Invalid MsgType"}, status=400)
 
 
@@ -69,7 +70,6 @@ STATUS_DESCRIPTIONS = {
     3: "Dispensing failed, but order number is missing or incorrect",
     4: "Dispensing result unknown",
 }
-
 
 
 def delivery_result_feedback_5000(request):
@@ -86,8 +86,7 @@ def delivery_result_feedback_5000(request):
     name = data.get('Name')                 # Product name
     product_type = data.get('Type')         # Product type
     print("Logiing 5000")
-    
-    
+
     log = TransactionLog.objects.filter(trade_number=trade_no).first()
     if log:
         if (status == "0" or status == "2"):
@@ -96,6 +95,9 @@ def delivery_result_feedback_5000(request):
                 int(status), "Unknown status")
             log.feedback_status = status
             log.save()
+            slot = log.slot
+            slot.quantity_available = slot.quantity_available - 1
+            slot.save()
             return Response({
                 "Status": "0",
                 "SlotNo": request.data.get("SlotNo"),
@@ -116,10 +118,6 @@ def delivery_result_feedback_5000(request):
             })
     else:
         return Response({"Status": "1", "Err": "Invalid TradeNo"}, status=400)
-            
-        
-        
-
 
 
 def restock_result_feedback_5001(request):

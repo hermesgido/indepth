@@ -1,6 +1,6 @@
 
 from django.urls import path
-from api.views import AdminLogin, CheckAppUpdateView, CustomerAPIView, CustomerCreateAPIView, HelloWorldView, MachineSlotsAPIView, SetMachineIdAndPassword, TransactionCreateAPIView, VendingMashineCallBackAPI, check_app_update
+from api.views import AdminLogin, CustomerAPIView, CustomerCreateAPIView, HelloWorldView, MachineSlotsAPIView, SetMachineIdAndPassword, TransactionCreateAPIView, VendingMashineCallBackAPI, check_app_update
 from backend import views
 urlpatterns = [
     # path('api/', views.home, name="home"),
