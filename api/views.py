@@ -259,7 +259,7 @@ class CheckAppUpdateView(APIView):
             return Response({
                 'update_available': True,
                 'latest_version': latest_update.version,
-                'apk_file': latest_update.apk_file,
+                'apk_file': latest_update.apk_file.url,
                 'download_url': latest_update.download_url,
             })
         return Response({
