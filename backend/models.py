@@ -141,12 +141,17 @@ class Customer(models.Model):
     def today_condom_transactions(self):
         today = datetime.date.today()
         transactions = Transaction.objects.filter(customer=self, product_type="Condoms", created_at__date=today)
+        transaction_logs_count = TransactionLog.objects.filter(
+            transaction__in=transactions).count()
+        return transaction_logs_count
+
         return transactions.count()
     @property
-    def today_kits_transactions(self):
+    def today_kits_transaction_logs(self):
         today = datetime.date.today()
-        transactions = Transaction.objects.filter(customer=self, product_type="Kits", created_at__date=today)
-        return transactions.count()
+        transactions = Transaction.objects.filter(customer=self,product_type="Kits",created_at__date=today)
+        transaction_logs_count = TransactionLog.objects.filter(transaction__in=transactions).count()
+        return transaction_logs_count
     
     def transactions(self):
         return Transaction.objects.filter(customer=self)
