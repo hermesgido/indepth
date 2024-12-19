@@ -161,7 +161,7 @@ class MachineSlotsAPIView(APIView):
         machine = Machine.objects.filter(machine_id=machine_id).first()
         if not machine:
             return Response({"status": "error", "message": "Machine not found"})
-        slots = Slot.objects.filter(machine=machine)
+        slots = Slot.objects.filter(machine=machine).order_by('slot_number')
         data = []
         for slot in slots:
             data.append({
