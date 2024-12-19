@@ -1,8 +1,7 @@
 
 from django.urls import path
-from api.views import AdminLogin, CheckAppUpdateView, CustomerAPIView, CustomerCreateAPIView, HelloWorldView, MachineSlotsAPIView, SetMachineIdAndPassword, TransactionCreateAPIView, VendingMashineCallBackAPI
+from api.views import AdminLogin, CheckAppUpdateView, CustomerAPIView, CustomerCreateAPIView, HelloWorldView, MachineSlotsAPIView, SetMachineIdAndPassword, TransactionCreateAPIView, VendingMashineCallBackAPI, check_app_update
 from backend import views
-
 urlpatterns = [
     # path('api/', views.home, name="home"),
     path('hello/', HelloWorldView.as_view(), name='hello-world'),
@@ -17,6 +16,6 @@ urlpatterns = [
 
     path('machine-login/', SetMachineIdAndPassword.as_view(), name="machine-login"),
     path('admin-login/', AdminLogin.as_view(), name="admin-login"),
-    path('check-app-update/', CheckAppUpdateView.as_view(), name='check-app-update'),
+    path('check-app-update/', check_app_update, name='check-app-update'),
 
 ]

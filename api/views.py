@@ -1,3 +1,4 @@
+from rest_framework.decorators import api_view
 import datetime
 import logging
 from django.contrib.auth.hashers import make_password
@@ -8,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from .vending import VendingMashineCallBackAPI
 from backend.models import AppUpdate, Customer, Facility, Machine, Slot, Transaction, TransactionLog
 from django.db.models import Q
+
 
 class HelloWorldView(APIView):
     permission_classes = [IsAuthenticated]
@@ -72,7 +74,7 @@ class CustomerCreateAPIView(APIView):
             gender=gender,
             registered_machine=machine
         )
-        customer.save() 
+        customer.save()
         return Response({"status": "success", "data": get_customer_data(customer), "message": "Customer created successfully"})
 
 
@@ -138,7 +140,7 @@ class TransactionCreateAPIView(APIView):
         # Save transaction logs
         # (TransactionLog.objects.create(transaction=transaction, machine=machine, slot=slot, product_type=product_type, index=i) for i in range(transaction.amount))
         print(transaction.amount)
-        
+
         for i in range(int(transaction.amount)):
             TransactionLog.objects.create(
                 transaction=transaction,
@@ -214,7 +216,7 @@ class SetMachineIdAndPassword(APIView):
                 )
 
             # Update machine password
-            machine.password = password # Hash the password
+            machine.password = password  # Hash the password
             machine.save()
 
             return Response(
@@ -241,27 +243,42 @@ class AdminLogin(APIView):
         phone_number = request.POST.get('phone_number')
         password = request.POST.get('password')
         try:
-            admin  = Facility.objects.filter(mobile_no=phone_number, app_password=password)
+            admin = Facility.objects.filter(
+                mobile_no=phone_number, app_password=password)
             if not admin.exists():
-                return Response({'status': 'error','message': 'Invalid credentials'})
-            return Response({'status':'success','message': 'Login successful'})
+                return Response({'status': 'error', 'message': 'Invalid credentials'})
+            return Response({'status': 'success', 'message': 'Login successful'})
         except Exception as e:
-            return Response({'status': 'error','message': str(e)})
-    
+            return Response({'status': 'error', 'message': str(e)})
 
-class CheckAppUpdateView(APIView):
-    def get(self, request, *args, **kwargs):
-        current_version = request.query_params.get('current_version', '')
-        latest_update = AppUpdate.objects.latest(
-            'id')  
 
-        if current_version != latest_update.version:
-            return Response({
-                'update_available': True,
-                'latest_version': latest_update.version,
-                'apk_file': latest_update.apk_file.url,
-                'download_url': latest_update.download_url,
-            })
+# class CheckAppUpdateView(APIView):
+#     def get(self, request, *args, **kwargs):
+#         current_version = request.query_params.get('current_version', '')
+#         latest_update = AppUpdate.objects.latest(
+#             'id')
+
+#         if current_version != latest_update.version:
+#             return Response({
+#                 'update_available': True,
+#                 'latest_version': latest_update.version,
+#                 'apk_file': latest_update.apk_file.url,
+#                 'download_url': latest_update.download_url,
+#             })
+#         return Response({
+#             'update_available': False,
+#         })
+
+
+@api_view(['GET'])
+def check_app_update(request):
+    try:
+        latest_update = AppUpdate.objects.latest('id')
         return Response({
-            'update_available': False,
+            'update_available': True,
+            'latest_version': latest_update.version,
+            'apk_file': latest_update.apk_file.url,
+            'download_url': latest_update.download_url,
         })
+    except AppUpdate.DoesNotExist:
+        return Response({"error": "No updates found"}, status=404)
