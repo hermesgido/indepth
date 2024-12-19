@@ -26,6 +26,12 @@ PRODUCT_TYPES = (
     ('Condoms', 'Condoms'),
     ('Kits', 'Kits'),
 )
+PRODUCT_SUBTYPES = (
+    ('Male Condoms', 'Male Condoms'),
+    ('Female Condoms', 'Female Condoms'),
+    ('Blood Kits', 'Blood Kits'),
+    ('Oral Kits', 'Oral Kits'),
+)
 
 
 PIN_TYPES = (
@@ -46,6 +52,26 @@ class Machine(models.Model):
     status = models.CharField(max_length=50, null=True, blank=True)
     password = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=200, null=True, blank=True)
+    last_online = models.DateTimeField(null=True, blank=True)
+    
+    # def get_online_status(self):
+    #     ##if last_online is 10 seconds ago then the machine is online
+    #     if self.last_online and datetime.datetime.now() - self.last_online < datetime.timedelta(seconds=10):
+    #         return "Online"
+    #     else:
+    #         return "Offline"
+    def remained_condoms(self):
+        slots = Slot.objects.filter(machine=self, product_type= "Condoms")
+        return sum(slot.quantity_available for slot in slots)
+    def remained_kits(self):
+        slots = Slot.objects.filter(machine=self,  product_type="Kits")
+        return sum(slot.quantity_available for slot in slots if slot.product_type == "Kits")
+    def condom_capacity(self):
+        return sum(slot.capacity for slot in Slot.objects.filter(machine=self, product_type="Condoms"))
+    def kit_capacity(self):
+        return sum(slot.capacity for slot in Slot.objects.filter(machine=self, product_type="Kits"))
+        
+        
     
     def __str__(self):
         return self.name + self.machine_id
@@ -56,17 +82,23 @@ class Slot(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='slots/', null=True, blank=True)
     product_type = models.CharField(max_length=50, choices=PRODUCT_TYPES)
+    product_subtype = models.CharField(max_length=50, choices=PRODUCT_SUBTYPES, blank=True, null=True)
     capacity = models.IntegerField()
     quantity_available = models.IntegerField()
-    price = models.IntegerField()
+    price = models.IntegerField(null=True, blank=True)
+    product_image = models.ImageField(upload_to="product_images", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def stock(self):
+        return f"{self.quantity_available}/{self.capacity}"
     
     def get_product_id(self):
         if self.product_type == "Kits":
             return "222"
         else:
             return "111"
+    
     
     def __str__(self):
         return self.name

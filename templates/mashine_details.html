@@ -1,0 +1,228 @@
+{% extends 'snippets/base.html' %} {% load static %} {% block content %}
+
+<div class="page-wrapper">
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Mashine Slots</h4>
+                </div>
+                <!--end col-->
+                <div class="col-auto"></div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="d-flex flex-wrap">
+                {% for slot in slots %}
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="card-body">
+                      {% if slot.product_image %}
+                      <img
+                        src="{{ slot.product_image.url }}"
+                        alt="image"
+                        style="width: 150px; height: 150px; object-fit: cover"
+                      />
+                      {% else %}
+                      <img
+                        src=""
+                        alt="image"
+                        style="width: 150px; height: 150px; object-fit: cover"
+                      />
+                      {% endif %}
+
+                      <h5 class="card-title mt-1">
+                        <strong>Slot Number:</strong> {{ slot.slot_number }}
+                      </h5>
+                      <p class="card-text">
+                        <strong>Product Type:</strong> {{ slot.product_type }}
+                        <br />
+                        <strong>Stock:</strong> {{ slot.stock }} <br />
+                      </p>
+                      <div class="d-flex">
+                        <button
+                          class="btn btn-primary m-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#editSlotModal"
+                          onclick="editSlot({{ slot.id }}, '{{ slot.name }}', {{ slot.slot_number }}, '{{ slot.product_type }}', {{ slot.capacity }}, {{ slot.quantity_available }})"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="editSlotModal"
+              tabindex="-1"
+              aria-labelledby="editSlotModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form
+                    id="editSlotForm"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    action="{% url 'edit_slot' %}"
+                  >
+                    {% csrf_token %}
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editSlotModalLabel">
+                        Edit Slot
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="hidden" name="slot_id" id="slotId" />
+                      <div class="d-flex">
+                        <div class="col-md-6">
+                          <div class="mb-3 m-1">
+                            <label for="slotName" class="form-label"
+                              >Name</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="slotName"
+                              name="name"
+                              required
+                              readonly
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3 m-1">
+                            <label for="slotNumber" class="form-label"
+                              >Slot Number</label
+                            >
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="slotNumber"
+                              name="slot_number"
+                              required
+                              readonly
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="productType" class="form-label"
+                          >Product Type</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="productType"
+                          name="product_type"
+                          required
+                          readonly
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="capacity" class="form-label"
+                          >Capacity</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="capacity"
+                          name="capacity"
+                          required
+                          readonly
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="quantityAvailable" class="form-label"
+                          >Quantity Available</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="quantityAvailable"
+                          name="quantity_available"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="productImage" class="form-label"
+                          >Product Image</label
+                        >
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="productImage"
+                          name="product_image"
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        Save changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              function editSlot(
+                id,
+                name,
+                slotNumber,
+                productType,
+                capacity,
+                quantityAvailable
+              ) {
+                document.getElementById("slotId").value = id;
+                document.getElementById("slotName").value = name;
+                document.getElementById("slotNumber").value = slotNumber;
+                document.getElementById("productType").value = productType;
+                document.getElementById("capacity").value = capacity;
+                document.getElementById("quantityAvailable").value =
+                  quantityAvailable;
+              }
+            </script>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container -->
+
+    <!--end footer-->
+  </div>
+  <!-- end page content -->
+</div>
+
+{% endblock %}

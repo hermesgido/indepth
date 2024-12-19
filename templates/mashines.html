@@ -16,76 +16,11 @@
                 <div class="col-auto">
                   <form class="row g-2">
                     <div class="col-auto">
-                      <a
-                        class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="false"
-                        aria-expanded="false"
-                        data-bs-auto-close="outside"
-                      >
-                        <i class="iconoir-filter-alt me-1"></i> Filter
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-start">
-                        <div class="p-2">
-                          <div class="form-check mb-2">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-all"
-                            />
-                            <label class="form-check-label" for="filter-all">
-                              All
-                            </label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-one"
-                            />
-                            <label class="form-check-label" for="filter-one">
-                              New
-                            </label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-two"
-                            />
-                            <label class="form-check-label" for="filter-two">
-                              VIP
-                            </label>
-                          </div>
-
-                          <div class="form-check">
-                            <input
-                              type="checkbox"
-                              class="form-check-input"
-                              checked
-                              id="filter-six"
-                            />
-                            <label class="form-check-label" for="filter-six">
-                              Loyal
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-auto">
                       <button
                         type="button"
                         class="btn btn-primary"
                         data-bs-toggle="modal"
-                        data-bs-target="#addBoard"
-                      >
+                        data-bs-target="#addBoard">
                         <i class="fa-solid fa-plus me-1"></i> Add Mashine
                       </button>
                     </div>
@@ -118,6 +53,10 @@
         </tr>
     </thead>
     <tbody>
+
+        
+        {% for machine in  machines %}
+               
         <tr>
             <td style="width: 16px;">
                 <div class="form-check">
@@ -126,197 +65,20 @@
             </td>
             <td class="ps-0">
                 <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine A</span>
+                    <span class="font-13 fw-medium">{{ machine.name }}</span>
                 </p>
             </td>
-            <td>Mbeya</td>
-            <td>34/300</td>
-            <td>22/38</td>
-            <td>Active</td>
+            <td>{{ machine.location }}</td>
+            <td>{{ machine.remained_condoms }}/{{ machine.condom_capacity }}</td>
+            <td>{{ machine.remained_kits }}/{{ machine.kit_capacity }}</td>
+            <td>{{ machine.get_online_status }}</td>
             <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'machine_details' machine.id %}" class="btn btn-info btn-sm">View</a>
             </td>
         </tr>
+         {% endfor %}
 
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck2" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine B</span>
-                </p>
-            </td>
-            <td>Iringa</td>
-            <td>45/300</td>
-            <td>30/38</td>
-            <td>Inactive</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck3" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine C</span>
-                </p>
-            </td>
-            <td>Rukwa</td>
-            <td>50/300</td>
-            <td>28/38</td>
-            <td>Active</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck4" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine D</span>
-                </p>
-            </td>
-            <td>Katavi</td>
-            <td>20/300</td>
-            <td>10/38</td>
-            <td>Inactive</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck5" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine E</span>
-                </p>
-            </td>
-            <td>Mbeya</td>
-            <td>40/300</td>
-            <td>15/38</td>
-            <td>Active</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck6" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine F</span>
-                </p>
-            </td>
-            <td>Iringa</td>
-            <td>60/300</td>
-            <td>35/38</td>
-            <td>Inactive</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck7" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine G</span>
-                </p>
-            </td>
-            <td>Rukwa</td>
-            <td>25/300</td>
-            <td>18/38</td>
-            <td>Active</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck8" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine H</span>
-                </p>
-            </td>
-            <td>Katavi</td>
-            <td>30/300</td>
-            <td>20/38</td>
-            <td>Active</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck9" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine I</span>
-                </p>
-            </td>
-            <td>Mbeya</td>
-            <td>55/300</td>
-            <td>27/38</td>
-            <td>Inactive</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td style="width: 16px;">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="check" id="machineCheck10" />
-                </div>
-            </td>
-            <td class="ps-0">
-                <p class="d-inline-block align-middle mb-0">
-                    <span class="font-13 fw-medium">Machine J</span>
-                </p>
-            </td>
-            <td>Iringa</td>
-            <td>35/300</td>
-            <td>25/38</td>
-            <td>Active</td>
-            <td class="text-end">
-                <a href="#" class="btn btn-info btn-sm">View</a>
-            </td>
-        </tr>
+        
     </tbody>
 </table>
 

@@ -1,6 +1,9 @@
+from .models import Slot
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
 from backend.filters import CustomerFilter
 from .forms import FacilityForm  
-from .models import Customer, Facility, Transaction, TransactionLog
+from .models import Customer, Facility, Machine, Slot, Transaction, TransactionLog
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -139,4 +142,37 @@ def audit_logs(request):
 
 
 def mashines(request):
-    return render(request, 'mashines.html')
+    machines_list = Machine.objects.all()
+    
+    context = {
+       'machines': machines_list, 
+    }
+    return render(request, 'mashines.html', context)
+
+
+def machine_details(request, id):
+    machine = Machine.objects.get(id=id)
+    slots = Slot.objects.filter(machine=machine)
+
+    context = {
+        'machines': machine,
+        'slots': slots,
+    }
+    return render(request, 'mashine_details.html', context)
+
+
+def edit_slot(request):
+    if request.method == "POST":
+        slot_id = request.POST.get("slot_id")
+        slot = get_object_or_404(Slot, id=slot_id)
+        slot.name = request.POST.get("name")
+        slot.slot_number = request.POST.get("slot_number")
+        slot.product_type = request.POST.get("product_type")
+        slot.capacity = request.POST.get("capacity")
+        slot.quantity_available = request.POST.get("quantity_available")
+        slot.price = request.POST.get("price")
+        if 'product_image' in request.FILES:
+            print("Product image foundd")
+            slot.product_image = request.FILES['product_image']
+        slot.save()
+        return redirect(request.META.get('HTTP_REFERER'))

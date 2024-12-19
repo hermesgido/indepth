@@ -1,53 +1,96 @@
+import os
+from django.core.files.storage import FileSystemStorage
 from django.core.management.base import BaseCommand
 from backend.models import Machine, Slot
 
+
 class Command(BaseCommand):
-    help = 'Generate slots for all machines'
+    help = 'Generate slots for all machines with specific product types, subtypes, and product images'
 
     def handle(self, *args, **kwargs):
-        # Define the slot numbers and product types
-        kits_slots = [1, 3, 5, 7, 11, 13, 15, 17, 21, 23, 25, 27]
-        condoms_slots = list(range(31, 61))
+        # Define the slot data with product types, subtypes, and their respective images
+        slot_data = {
+            'kits_oral': {
+                'slot_numbers': [1, 3, 5],
+                'product_type': 'Kits',
+                'product_subtype': 'Oral Kits',
+                'image_filename': 'oralkit.jpg',
+                'price': 0,
+                'quantity': 0
+            },
+            'kits_blood': {
+                'slot_numbers': [11, 13, 15, 21, 23, 25],
+                'product_type': 'Kits',
+                'product_subtype': 'Blood Kits',
+                'image_filename': 'bloodkit.jpg',
+                'price': 0,
+                'quantity': 0
+            },
+            'condoms_male': {
+                'slot_numbers': [7, 17, 27] + list(range(41, 61)),
+                'product_type': 'Condoms',
+                'product_subtype': 'Male Condoms',
+                'image_filename': 'male_condom.jpg',
+                'price': 500,
+                'quantity': 0
+            },
+            'condoms_female': {
+                'slot_numbers': list(range(31, 41)),
+                'product_type': 'Condoms',
+                'product_subtype': 'Female Condoms',
+                'image_filename': 'female_condom.jpg',
+                'price': 500,
+                'quantity': 0
+            },
+        }
 
-        # Iterate through all machines in the database
+        # Retrieve all machines
         machines = Machine.objects.all()
         if not machines.exists():
-            self.stdout.write(self.style.WARNING("No machines found in the database."))
+            self.stdout.write(self.style.WARNING(
+                "No machines found in the database."))
             return
 
+        # Create FileSystemStorage instance for checking file existence
+        fs = FileSystemStorage()
+
+        # Iterate through all machines
         for machine in machines:
             self.stdout.write(f"Processing machine: {machine.name} (ID: {machine.machine_id})")
 
-            # Generate slots for kits
-            for slot_number in kits_slots:
-                _, created = Slot.objects.get_or_create(
-                    slot_number=slot_number,
-                    machine=machine,
-                    defaults={
-                        'name': f"Slot {slot_number} - Kits",
-                        'product_type': 'Kits',
-                        'capacity': 199,  
-                        'quantity_available': 10,
-                        'price': 0,  
-                    },
-                )
-                if created:
-                    self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} (Kits) for machine {machine.name}."))
+            # Iterate through slot data to create slots
+            for key, data in slot_data.items():
+                for slot_number in data['slot_numbers']:
+                    # Get the image path
+                    image_path = os.path.join(
+                        'product_images', data['image_filename'])
 
-            # Generate slots for condoms
-            for slot_number in condoms_slots:
-                _, created = Slot.objects.get_or_create(
-                    slot_number=slot_number,
-                    machine=machine,
-                    defaults={
-                        'name': f"Slot {slot_number} - Condoms",
-                        'product_type': 'Condoms',
-                        'capacity': 199,  
-                        'quantity_available': 20,
-                        'price': 500,  
-                    },
-                )
-                if created:
-                    self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} (Condoms) for machine {machine.name}."))
+                    # Check if the file exists
+                    if not fs.exists(image_path):
+                        self.stdout.write(self.style.WARNING(
+                            f"Image file {data['image_filename']} does not exist. Skipping."))
+                        continue
 
-        self.stdout.write(self.style.SUCCESS("Slot generation completed for all machines."))
+                    # Remove '/media' from the URL if present
+                    image_url = fs.url(image_path).replace('/media', '')
+
+                    _, created = Slot.objects.get_or_create(
+                        slot_number=slot_number,
+                        machine=machine,
+                        defaults={
+                            'name': f"Slot {slot_number} - {data['product_type']}",
+                            'product_type': data['product_type'],
+                            'product_subtype': data['product_subtype'],
+                            'capacity': 11,
+                            'quantity_available': data['quantity'],
+                            'price': data['price'],
+                            'product_image': image_url  
+                        },
+                    )
+
+                    # Log the creation success
+                    if created:
+                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({  data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
+
+        self.stdout.write(self.style.SUCCESS(
+            "Slot generation completed for all machines."))
