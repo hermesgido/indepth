@@ -53,16 +53,16 @@ class CustomerAdmin(admin.ModelAdmin):
         'age',
         'gender',
         'registered_machine',
-        'condom_transaction_limit',
-        'kits_transaction_limit',
-        'today_condom_transactions',
-        'today_kits_transactions',
+        # 'condom_transaction_limit',
+        # 'kits_transaction_limit',
+        # 'today_condom_transactions',
+        # 'today_kits_transactions',
     )
     search_fields = ('name', 'location', 'phone_number',
                      'registered_machine__name')
     list_filter = ('type', 'client_group', 'gender')
-    readonly_fields = ('created_at', 'updated_at', 'condom_transaction_limit',
-                       'kits_transaction_limit', 'today_condom_transactions', 'today_kits_transactions')
+    # readonly_fields = ('created_at', 'updated_at', 'condom_transaction_limit',
+    #                    'kits_transaction_limit', 'today_condom_transactions', 'today_kits_transactions')
 
     def registered_machine_name(self, obj):
         return obj.registered_machine.name if obj.registered_machine else None
@@ -96,12 +96,9 @@ class TransactionLogAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at'
     )
-    list_filter = ('product_type', 'status', 'created_at')  # Filters for admin
-    search_fields = ('transaction__customer__phone_number',
-                     'trade_number', 'status')  # Enable search
-    ordering = ('-created_at',)  # Order by newest logs
-
-    # Optionally, define read-only fields for created/updated timestamps
+    list_filter = ('product_type', 'status', 'created_at') 
+    search_fields = ('trade_number', 'status')  
+    ordering = ('-created_at',)  
     readonly_fields = ('created_at', 'updated_at')
 
 
