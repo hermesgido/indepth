@@ -54,6 +54,8 @@ class Command(BaseCommand):
 
         # Create FileSystemStorage instance for checking file existence
         fs = FileSystemStorage()
+        machines = []
+        
 
         # Iterate through all machines
         for machine in machines:
@@ -92,8 +94,7 @@ class Command(BaseCommand):
 
                     # Log the creation success
                     if created:
-                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({
-                                          data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
+                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({  data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
 
         self.stdout.write(self.style.SUCCESS(
             "Slot generation completed for all machines."))
