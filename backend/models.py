@@ -187,7 +187,7 @@ class Transaction(models.Model):
         max_length=50, null=True, blank=True, choices=PRODUCT_TYPES, )
     status = models.CharField(max_length=50, null=True,
                               blank=True, choices=TRANSCTION_STATUSES, default="Pending")
-    
+    kvp_pin = models.ForeignKey('Facility', null=True, blank=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
@@ -228,7 +228,7 @@ class TransactionLog(models.Model):
         return self.transaction.customer.phone_number if self.transaction.customer.phone_number else self.transaction.customer.pin + self.product_type + "Log" + " " + "Status " + self.status
 
 class Facility(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     machine = models.ForeignKey(Machine, null=True, blank=True, on_delete=models.CASCADE)
     district = models.CharField(
         max_length=100, verbose_name="District Supporting Ward",  null=True, blank=True)
@@ -245,6 +245,8 @@ class Facility(models.Model):
     mobile_no = models.CharField(max_length=15, verbose_name="Mobile Number", null=True, blank=True)
     app_password =  models.CharField(
         max_length=15, verbose_name="App Password", null=True, blank=True)
+    pin_range_start = models.PositiveIntegerField()
+    pin_range_end = models.PositiveIntegerField()
     status = models.CharField(max_length=50, null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -278,3 +280,20 @@ class AppUpdate(models.Model):
 
     def __str__(self):
         return f"App Update v{self.version}"
+
+class KvpPin(models.Model):
+    facility = models.ForeignKey(Facility, null=True, on_delete=models.SET_NULL)
+    pin = models.CharField(max_length=7, unique=True)
+    is_used = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+class KvpGroup(models.Model):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    pin_code_start = models.PositiveIntegerField()
+    pin_code_end = models.PositiveIntegerField()
+    age_start = models.PositiveIntegerField()
+    age_end = models.PositiveIntegerField()
+    gender = models.CharField(max_length=200, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

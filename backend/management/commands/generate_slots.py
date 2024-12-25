@@ -57,7 +57,8 @@ class Command(BaseCommand):
 
         # Iterate through all machines
         for machine in machines:
-            self.stdout.write(f"Processing machine: { machine.name} (ID: {machine.machine_id})")
+            self.stdout.write(f"Processing machine: {
+                              machine.name} (ID: {machine.machine_id})")
 
             # Iterate through slot data to create slots
             for key, data in slot_data.items():
@@ -91,7 +92,8 @@ class Command(BaseCommand):
 
                     # Log the creation success
                     if created:
-                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
+                        self.stdout.write(self.style.SUCCESS(f"Created slot {slot_number} ({
+                                          data['product_type']} - {data['product_subtype']}) with image for machine {machine.name}."))
 
         self.stdout.write(self.style.SUCCESS(
             "Slot generation completed for all machines."))
