@@ -12,6 +12,10 @@ urlpatterns = [
     # Customers
     path('customers/', views.customers, name="customers"),
     path('kvp-customers/', views.kvp_customers, name="kvp_customers"),
+    path('kvp_pins/', views.kvp_pins, name="kvp_pins"),
+    path('assign-pin/<int:pin_id>/', views.assign_pin_to_customer,
+         name='assign_pin_to_customer'),
+
 
     # Staff and Facilities
     path('staff/', views.staff, name="staff"),

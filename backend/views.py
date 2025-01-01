@@ -1,4 +1,5 @@
-from .models import Slot
+from backend.helpers import assign_pin, generate_kvp_pins
+from .models import KvpGroup, KvpPin, Slot
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from backend.filters import CustomerFilter
@@ -98,8 +99,41 @@ def kvp_customers(request):
         "filter": customer_filter,
         "customers": customer_filter.qs,
     }
-
     return render(request, 'kvp_customers.html', context)
+
+
+def kvp_pins(request):
+    facilities = Facility.objects.all()
+    pins = KvpPin.objects.all().order_by('-created_at')
+    groups = KvpGroup.objects.all()
+    if request.method == 'POST':
+        facility_id = request.POST.get('facility')
+        amount  = request.POST.get('amount')
+        groups = request.POST.getlist('group') 
+        if not facility_id:
+            messages.error(request, "Please select a facility")
+            return redirect(request.META.get('HTTP_REFERER'))
+        if not amount:
+            messages.error(request, "Please enter the amount of pins to generate")
+            return redirect(request.META.get('HTTP_REFERER'))
+        if not groups:
+            messages.error(request, "Please select at least one group")
+            return redirect(request.META.get('HTTP_REFERER'))
+        generate_kvp_pins(facility_id, amount, groups)
+        return redirect(request.META.get('HTTP_REFERER'))
+    
+    context = {
+        'facilities': facilities,
+        'pins': pins,
+        'groups': groups,
+    }
+    return render(request, 'kvp_pins.html', context)
+
+
+def assign_pin_to_customer(request, pin_id):
+    assign_pin(request, pin_id)
+    return redirect(request.META.get('HTTP_REFERER'))
+
     
 def staff(request):
 

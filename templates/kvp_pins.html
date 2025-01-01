@@ -1,0 +1,166 @@
+{% extends 'snippets/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">KVP Pins</h4>
+                </div>
+                <div class="col-auto">
+                  <form class="row g-2">
+                    <div class="col-auto">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-plus me-1"></i> Add Pins
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                {% include "snippets/messages.html" %}
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table mb-0 checkbox-all">
+                  <thead class="table-light">
+                    <tr>
+                      <th>#</th>
+                      <th>PIN</th>
+                      <th>Phone Number</th>
+                      <th>Age Range</th>
+                      <th>Gender</th>
+                      <th>Location</th>
+                      <th>Type</th>
+                      <th>Client Group</th>
+                      <th>Status</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pin in pins %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ pin.pin|default:"N/A" }}</td>
+                      <td>{{ pin.phone_number|default:"N/A" }}</td>
+                      <td>{{ pin.group.age_start|default:"N/A" }} - {{ pin.group.age_end|default:"N/A" }}</td>
+                      <td>{{ pin.group.gender|default:"N/A" }}</td>
+                      <td>{{ pin.location|default:"N/A" }}</td>
+                      <td>{{ pin.type|default:"N/A" }}</td>
+                      <td>{{ pin.group|default:"N/A" }}</td>
+                      <td>
+                        {% if pin.is_used %}
+                        <p class="btn bg-primary-subtle text-primary">Used</p>
+                        {% else %}
+                        <p class="btn bg-danger-subtle text-danger">Unused</p>
+                        {% endif %}
+                      </td>
+                      <td class="text-end">
+                        <a href="#" class="open-assign-modal" data-pin-id="{{ pin.id }}">
+                          <i class="las la-pen text-secondary fs-18"></i>
+                        </a>
+                        <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="9" class="text-center">No customers available</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Assign PIN Modal -->
+<div class="modal fade" id="assignPinModal" tabindex="-1" aria-labelledby="assignPinModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assignPinModalLabel">Assign PIN to Customer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to assign this PIN to a customer?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form id="assignPinForm" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Pins Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Generate Pins</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          <label for="number">Select Facility</label>
+          <select name="facility" id="" class="form-select">
+            <option value="">Select Facility</option>
+            {% for facility in facilities %}
+            <option value="{{ facility.id }}">{{ facility }}</option>
+            {% endfor %}
+          </select>
+          <br>
+          <label for="group">Select Group</label>
+          {% for group in groups %}
+          <div class="form-check">
+            <input type="checkbox" name="group" value="{{ group.id }}" class="form-check-input" id="group_{{ group.id }}">
+            <label class="form-check-label" for="group_{{ group.id }}">{{ group }}</label>
+          </div>
+          {% endfor %}
+          <br>
+          <label for="number">Amount For Each Group</label>
+          <input type="number" name="amount" id="" class="form-control" min="1" placeholder="Amount">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Generate</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const assignPinModal = new bootstrap.Modal(document.getElementById('assignPinModal'));
+    const assignPinForm = document.getElementById('assignPinForm');
+    const modalTriggerLinks = document.querySelectorAll('.open-assign-modal');
+
+    modalTriggerLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+            const pinId = this.getAttribute('data-pin-id'); // Extract pin ID
+            if (pinId) {
+                assignPinForm.setAttribute('action', `/backend/assign-pin/${pinId}/`);
+            }
+            assignPinModal.show(); // Show the modal programmatically
+        });
+    });
+});
+</script>
+
+{% endblock %}

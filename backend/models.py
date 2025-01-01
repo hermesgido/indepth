@@ -283,13 +283,14 @@ class AppUpdate(models.Model):
 
 class KvpPin(models.Model):
     facility = models.ForeignKey(Facility, null=True, on_delete=models.SET_NULL)
+    group = models.ForeignKey('KvpGroup', null=True, on_delete=models.SET_NULL)
     pin = models.CharField(max_length=7, unique=True)
     is_used = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
 class KvpGroup(models.Model):
-    name = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True, unique=True)
     pin_code_start = models.PositiveIntegerField()
     pin_code_end = models.PositiveIntegerField()
     age_start = models.PositiveIntegerField()
@@ -297,3 +298,6 @@ class KvpGroup(models.Model):
     gender = models.CharField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name

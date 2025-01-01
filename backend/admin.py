@@ -11,7 +11,7 @@
 
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import AppUpdate, Facility, Machine, MachineLogs, Slot, Customer, Transaction, TransactionLog
+from .models import AppUpdate, Facility, KvpGroup, KvpPin, Machine, MachineLogs, Slot, Customer, Transaction, TransactionLog
 
 
 class MachineAdmin(admin.ModelAdmin):
@@ -111,6 +111,9 @@ admin.site.register(Facility, FacilityAdmin)
 admin.site.register(TransactionLog, TransactionLogAdmin)
 admin.site.register(MachineLogs)
 admin.site.register(AppUpdate)
+admin.site.register(KvpGroup)
+admin.site.register(KvpPin)
+
 
 
 # Customizing Admin Dashboard
